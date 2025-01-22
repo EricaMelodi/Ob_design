@@ -1,6 +1,6 @@
 import java.awt.Color;
 
-    public abstract class Cars  {
+    public abstract class Cars implements Movable {
         public int nrDoors;
         public Color color;
         public double currentSpeed;
