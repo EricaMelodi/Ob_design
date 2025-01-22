@@ -7,7 +7,7 @@ import java.awt.Color;
         public double enginePower;
         public String modelName;
 
-        public Cars (int nrDoors, Color color, double enginePower, String modelName) {
+        public Cars(int nrDoors, Color color, double enginePower, String modelName) {
             this.nrDoors = nrDoors;
             this.color = color;
             this.enginePower = enginePower;
@@ -15,35 +15,38 @@ import java.awt.Color;
             stopEngine();
         }
 
-        public int getNrDoors(){
+        public int getNrDoors() {
             return nrDoors;
         }
 
-        public double getEnginePower(){
+        public double getEnginePower() {
             return enginePower;
         }
 
-        public double getCurrentSpeed(){
+        public double getCurrentSpeed() {
+            if (currentSpeed < 0 || currentSpeed > enginePower) {
+                System.out.println("Can't happen!!!");
+        }
             return currentSpeed;
         }
 
-        public Color getColor(){
+        public Color getColor() {
             return color;
         }
 
-        public void setColor(Color clr){
+        public void setColor(Color clr) {
             color = clr;
         }
 
-        public void startEngine(){
+        public void startEngine() {
             currentSpeed = 0.1;
         }
 
-        public void stopEngine(){
+        public void stopEngine() {
             currentSpeed = 0;
         }
 
-        public double speedFactor(){
+        public double speedFactor() {
             // return enginePower * 0.01 * trimFactor;
             return 0;
             // gemensam för både saab och volvo men inte samma utförande
@@ -51,21 +54,27 @@ import java.awt.Color;
             // dvs ej definierad i vår superklass...???
         }
 
-        public void incrementSpeed(double amount){
-            currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
+        public void incrementSpeed(double amount) {
+            currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
         }
 
-        public void decrementSpeed(double amount){
-            currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
+        public void decrementSpeed(double amount) {
+            currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
         }
 
         // TODO fix this method according to lab pm
-        public void gas(double amount){
+        public void gas(double amount) {
+            if (amount < 0 || amount > 1) {
+                System.out.println("fuck u");
+            }
             incrementSpeed(amount);
         }
 
         // TODO fix this method according to lab pm
-        public void brake(double amount){
+        public void brake(double amount) {
+            if (amount < 0 || amount > 1) {
+                System.out.println("fuck u");
+            }
             decrementSpeed(amount);
         }
     }
