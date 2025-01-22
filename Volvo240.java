@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Volvo240{
+public class Volvo240 extends Cars{
 
     public final static double trimFactor = 1.25;
     public int nrDoors; // Number of doors on the car
@@ -20,6 +20,7 @@ public class Volvo240{
     public int getNrDoors(){
         return nrDoors;
     }
+
     public double getEnginePower(){
         return enginePower;
     }

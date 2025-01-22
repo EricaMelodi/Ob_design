@@ -1,6 +1,4 @@
-public class Cars {
-
-    import java.awt.Color;
+import java.awt.Color;
 
     public abstract class Cars  {
         public int nrDoors;
@@ -16,9 +14,6 @@ public class Cars {
             this.modelName = modelName;
             stopEngine();
         }
-        //test
-
-        //nu ändrar Erica i fil Cars.
 
         public int getNrDoors(){
             return nrDoors;
@@ -101,6 +96,3 @@ public class Cars {
     - trimFactor
      */
 
-
-
-}

@@ -1,7 +1,6 @@
 import java.awt.*;
 
-public class Saab95{
-// tjena mittbena
+public class Saab95 extends Cars {
 
     public boolean turboOn;
     public int nrDoors; // Number of doors on the car
@@ -9,7 +8,7 @@ public class Saab95{
     public double currentSpeed; // The current speed of the car
     public Color color; // Color of the car
     public String modelName; // The car model name
-    //lol
+
     public Saab95(){
         nrDoors = 2;
         color = Color.red;
@@ -22,6 +21,7 @@ public class Saab95{
     public int getNrDoors(){
         return nrDoors;
     }
+
     public double getEnginePower(){
         return enginePower;
     }
