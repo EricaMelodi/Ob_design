@@ -18,6 +18,8 @@ public class Cars {
         }
         //test
 
+        //nu ändrar Erica i fil Cars.
+
         public int getNrDoors(){
             return nrDoors;
         }
