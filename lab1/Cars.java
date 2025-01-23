@@ -4,8 +4,8 @@ import java.awt.Color;
     public abstract class Cars implements Movable {
         private int nrDoors;
         private Color color;
-        private double currentSpeed;
-        private double enginePower;
+        public double currentSpeed;
+        public double enginePower;
         private String modelName;
 
         public Cars(int nrDoors, Color color, double enginePower, String modelName) {
@@ -16,15 +16,14 @@ import java.awt.Color;
             stopEngine();
         }
 
+        public double y = 0;
+        public double x = 0;
 
-        public int y = 0;
-        public int x = 0;
-
-        public int getX() {
+        public double getX() {
             return x;
         }
 
-        public int getY() {
+        public double getY() {
             return y;
         }
 
@@ -94,7 +93,7 @@ import java.awt.Color;
         public abstract void decrementSpeed(double amount);
 
 
-´        public void gas(double amount) {
+       public void gas(double amount) {
             if (amount < 0 || amount > 1) {
                 throw new IllegalArgumentException("Amount must be between 0 and 1");
             }
@@ -105,9 +104,7 @@ import java.awt.Color;
             }
         }
 
-
-
-´        public void brake(double amount) {
+        public void brake(double amount) {
             if (amount < 0 || amount > 1) {
                 throw new IllegalArgumentException("Amount must be between 0 and 1");
             }
