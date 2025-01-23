@@ -15,6 +15,21 @@ import java.awt.Color;
             stopEngine();
         }
 
+        void move(String direction) {
+            if (direction == "framåt") {
+                // y + 1
+            } else if (direction == "bakåt") {
+                // y - 1
+                System.out.println("Please enter a valid direction.");
+            }
+        }
+
+        void turnLeft();
+
+        void turnRight();
+
+
+
         public int getNrDoors() {
             return nrDoors;
         }
@@ -77,6 +92,7 @@ import java.awt.Color;
             }
             decrementSpeed(amount);
         }
+
     }
 
     // fråga: gemensammma metoder skall också implementera i superklassen men vad
