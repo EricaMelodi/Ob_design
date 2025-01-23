@@ -15,18 +15,33 @@ import java.awt.Color;
             stopEngine();
         }
 
-        void move(String direction) {
-            if (direction == "framåt") {
-                // y + 1
-            } else if (direction == "bakåt") {
-                // y - 1
-                System.out.println("Please enter a valid direction.");
+        public int y = 0;
+        public int x = 0;
+
+        @Override
+        public void move(String direction) {
+            if (("forward").equals(direction)){
+                x += currentSpeed;
+            } else if (("backward".equals(direction))) {
+                x -= currentSpeed;
+            } else {
+                System.out.println("Please enter a valid direction, fram eller back.");
+                // Hur får man in forward?
             }
         }
 
-        void turnLeft();
+        @Override
+        public void turnLeft(){
+             currentSpeed += y;
+        }
+        // Hur lösa detta?
 
-        void turnRight();
+        @Override
+       public void turnRight(){
+            currentSpeed -= y;
+       }
+       // Hur lösa så den inte ökar speed, svänger istället.
+
 
 
 
@@ -62,15 +77,11 @@ import java.awt.Color;
             currentSpeed = 0;
         }
 
-        public double speedFactor() {
-            return 0;
-        }
+        public abstract double speedFactor();
 
-        public void incrementSpeed(double amount) {
-        }
+        public abstract void incrementSpeed(double amount);
 
-        public void decrementSpeed(double amount) {
-        }
+        public abstract void decrementSpeed(double amount);
 
 
         // TODO fix this method according to lab pm
