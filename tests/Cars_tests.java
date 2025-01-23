@@ -10,9 +10,11 @@ public class Cars_tests  {
 
  @Test
  public void testMoveForward(){
-    Cars car = new Volvo240();
-
-    //Heejjj
+    Volvo240 car = new Volvo240();
+    car.startEngine();
+    car.move("forward");
+    assertTrue(car.getX() > 0, "Car should have moved forward");
 
  }
+
 }

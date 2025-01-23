@@ -16,8 +16,17 @@ import java.awt.Color;
             stopEngine();
         }
 
+
         public int y = 0;
         public int x = 0;
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
 
         @Override
         public void move(String direction) {
@@ -57,7 +66,7 @@ import java.awt.Color;
 
         public double getCurrentSpeed() {
             if (currentSpeed < 0 || currentSpeed > enginePower) {
-                System.out.println("Can't happen!!!");
+                throw new IllegalArgumentException("Current speed need to be between 0 and 1");
         }
             return currentSpeed;
         }
@@ -85,22 +94,29 @@ import java.awt.Color;
         public abstract void decrementSpeed(double amount);
 
 
-        // TODO fix this method according to lab pm
-        public void gas(double amount) {
+´        public void gas(double amount) {
             if (amount < 0 || amount > 1) {
-                System.out.println("fuck u");
+                throw new IllegalArgumentException("Amount must be between 0 and 1");
             }
             incrementSpeed(amount);
+            double oldSpeed = currentSpeed;
+            if ( currentSpeed < oldSpeed){
+                throw new IllegalArgumentException("Gas method should not reduce speed");
+            }
         }
 
-        // TODO fix this method according to lab pm
-        public void brake(double amount) {
+
+
+´        public void brake(double amount) {
             if (amount < 0 || amount > 1) {
-                System.out.println("fuck u");
+                throw new IllegalArgumentException("Amount must be between 0 and 1");
             }
             decrementSpeed(amount);
+            double oldSpeed = currentSpeed;
+            if (currentSpeed > oldSpeed) {
+                throw new IllegalArgumentException("Break method should not increase speed");
+            }
         }
-
     }
 
     // fråga: gemensammma metoder skall också implementera i superklassen men vad
