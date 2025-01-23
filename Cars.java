@@ -1,11 +1,11 @@
 import java.awt.Color;
 
     public abstract class Cars implements Movable {
-        public int nrDoors;
-        public Color color;
-        public double currentSpeed;
-        public double enginePower;
-        public String modelName;
+        private int nrDoors;
+        private Color color;
+        private double currentSpeed;
+        private double enginePower;
+        private String modelName;
 
         public Cars(int nrDoors, Color color, double enginePower, String modelName) {
             this.nrDoors = nrDoors;
@@ -37,6 +37,7 @@ import java.awt.Color;
         public double getEnginePower() {
             return enginePower;
         }
+
 
         public double getCurrentSpeed() {
             if (currentSpeed < 0 || currentSpeed > enginePower) {
