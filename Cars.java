@@ -63,20 +63,15 @@ import java.awt.Color;
         }
 
         public double speedFactor() {
-            // return enginePower * 0.01 * trimFactor;
             return 0;
-            // gemensam för både saab och volvo men inte samma utförande
-            // dessutom är trimFactor enbart en variabel för volvo,
-            // dvs ej definierad i vår superklass...???
         }
 
         public void incrementSpeed(double amount) {
-            currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
         }
 
         public void decrementSpeed(double amount) {
-            currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
         }
+
 
         // TODO fix this method according to lab pm
         public void gas(double amount) {
