@@ -9,7 +9,9 @@ import java.awt.Color;
         public double enginePower;
         private String modelName;
 
-        public enum Direction {NORTH, SOUTH, WEST, EAST}
+        public enum CardinalDirection { NORTH, SOUTH, WEST, EAST}
+
+        public CardinalDirection direction = CardinalDirection.NORTH;
 
         public Cars(int nrDoors, Color color, double enginePower, String modelName) {
             this.nrDoors = nrDoors;
@@ -31,18 +33,23 @@ import java.awt.Color;
         }
 
         @Override
-        public void move(Direction direction) {
+        public void move() {
             switch (direction){
                 case NORTH -> y += currentSpeed;
                 case SOUTH -> y-= currentSpeed;
-                case EAST -> x -= currentSpeed;
-                case WEST -> x += currentSpeed;
+                case EAST  -> x -= currentSpeed;
+                case WEST  -> x += currentSpeed;
             }
         }
 
         @Override
         public void turnLeft(){
-             currentSpeed += y;
+            switch (direction) {
+                case NORTH -> direction = CardinalDirection.WEST;
+                case SOUTH ->
+                case EAST  ->
+                case WEST  ->
+            }
         }
         // Hur lösa detta?
 
@@ -51,8 +58,6 @@ import java.awt.Color;
             currentSpeed -= y;
        }
        // Hur lösa så den inte ökar speed, svänger istället.
-
-
 
 
         public int getNrDoors() {

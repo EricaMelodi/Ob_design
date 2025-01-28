@@ -2,7 +2,7 @@
 public interface Movable {
 
 
-    void move(String direction);
+    void move();
 
     void turnLeft();
 
