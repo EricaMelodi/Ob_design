@@ -46,6 +46,43 @@ public class Cars_tests  {
      assertEquals(0.1 , car.getCurrentSpeed(), "The current speed should be over 0 if car has started");
  }
 
+@Test
+    public void doseItTurnLeft(){
+    Volvo240 car = new Volvo240();
+    car.startEngine();
+    car.turnLeft();
+    assertEquals(Cars.Coordinates.WEST, car.getDirection(), "Car should have moved left to east");
+}
+
+@Test
+    public void doesItTurnRight(){
+     Saab95 car = new Saab95();
+     car.startEngine();
+     car.turnRight();
+     assertEquals(Cars.Coordinates.EAST, car.getDirection(), "Car should have moved right to the north");
+}
+
+
+@Test
+    public void gasTest(){
+    Saab95 car = new Saab95();
+    car.startEngine();
+    car.gas(0.5);
+    assertTrue(car.currentSpeed > 0.1, "The current speed should be higher than 0.1 after you have gassed");
+}
+
+@Test
+    public void doesItBrake(){
+     Saab95 car = new Saab95();
+     car.startEngine();
+     car.brake(0.9);
+     assertEquals(0, car.getCurrentSpeed());
+     //assertTrue(car.turboOn == false,"The car should have stopped");
+}
+
+
+
+
 
 
 }

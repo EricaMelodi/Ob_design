@@ -13,6 +13,11 @@ import java.awt.Color;
 
         public Coordinates direction = Coordinates.NORTH;
 
+        public Coordinates getDirection(){
+            return direction;
+        }
+
+
         public Cars(int nrDoors, Color color, double enginePower, String modelName) {
             this.nrDoors = nrDoors;
             this.color = color;
@@ -54,7 +59,7 @@ import java.awt.Color;
         // Hur lösa detta?
 
         @Override
-       public void turnRight(){
+        public void turnRight(){
             switch (direction) {
                 case NORTH -> direction = Coordinates.EAST;
                 case SOUTH -> direction = Coordinates.WEST;
@@ -121,33 +126,8 @@ import java.awt.Color;
             double oldSpeed = currentSpeed;
             if (currentSpeed > oldSpeed) {
                 throw new IllegalArgumentException("Break method should not increase speed");
+            } if (amount > currentSpeed) {
+                currentSpeed = 0;
             }
         }
     }
-
-    // fråga: gemensammma metoder skall också implementera i superklassen men vad
-    // händer med ej gemensamma metoder, stannar dem kvar i respektive klass?
-
-    /*
-    gemensamma:
-    - getNrDoors
-    - getEnginePower
-    - getCurrentSpeed
-    - getColor
-    - setColor
-    - startEngine
-    - stopEngine
-    - speedFactor
-    - incrementSpeed
-    - decrementSpeed
-    - gas
-    - break
-
-    Vad Saab har men inte volvo:
-    - setTurboOn
-    - setTurboOff
-
-    Vad volvo har men inte Saab:≈
-    - trimFactor
-     */
-
