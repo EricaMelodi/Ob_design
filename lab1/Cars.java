@@ -34,7 +34,7 @@ import java.awt.Color;
             } else if (("backward".equals(direction))) {
                 x -= currentSpeed;
             } else {
-                System.out.println("Please enter a valid direction, fram eller back.");
+                System.out.println("Please enter a valid direction, forward or backwards.");
                 // Hur får man in forward?
             }
         }
