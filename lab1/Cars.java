@@ -1,12 +1,15 @@
 
 import java.awt.Color;
 
+
     public abstract class Cars implements Movable {
         private int nrDoors;
         private Color color;
         public double currentSpeed;
         public double enginePower;
         private String modelName;
+
+        public enum Direction {NORTH, SOUTH, WEST, EAST}
 
         public Cars(int nrDoors, Color color, double enginePower, String modelName) {
             this.nrDoors = nrDoors;
@@ -28,14 +31,12 @@ import java.awt.Color;
         }
 
         @Override
-        public void move(String direction) {
-            if (("forward").equals(direction)){
-                x += currentSpeed;
-            } else if (("backward".equals(direction))) {
-                x -= currentSpeed;
-            } else {
-                System.out.println("Please enter a valid direction, forward or backwards.");
-                // Hur får man in forward?
+        public void move(Direction direction) {
+            switch (direction){
+                case NORTH -> y += currentSpeed;
+                case SOUTH -> y-= currentSpeed;
+                case EAST -> x -= currentSpeed;
+                case WEST -> x += currentSpeed;
             }
         }
 
