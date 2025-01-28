@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class Cars_tests  {
 
  @Test
- public void testMoveForward(){
+ public void testMoveUp(){
     Volvo240 car = new Volvo240();
     car.startEngine();
-    car.move("forward");
-    assertTrue(car.getX() > 0, "Car should have moved forward");
+    car.move();
+    assertTrue(car.getY() > 0, "Car should have moved up");
 
  }
 
