@@ -47,11 +47,11 @@ public class Cars_tests  {
  }
 
 @Test
-    public void doseItTurnLeft(){
+    public void doesItTurnLeft(){
     Volvo240 car = new Volvo240();
     car.startEngine();
     car.turnLeft();
-    assertEquals(Cars.Coordinates.WEST, car.getDirection(), "Car should have moved left to east");
+    assertEquals(Cars.Coordinates.WEST, car.getDirection(), "Car should have moved left.");
 }
 
 @Test
@@ -59,7 +59,7 @@ public class Cars_tests  {
      Saab95 car = new Saab95();
      car.startEngine();
      car.turnRight();
-     assertEquals(Cars.Coordinates.EAST, car.getDirection(), "Car should have moved right to the north");
+     assertEquals(Cars.Coordinates.EAST, car.getDirection(), "Car should have moved right.");
 }
 
 
@@ -77,13 +77,7 @@ public class Cars_tests  {
      car.startEngine();
      car.brake(0.9);
      assertEquals(0, car.getCurrentSpeed());
-     //assertTrue(car.turboOn == false,"The car should have stopped");
 }
-
-
-
-
-
 
 }
 
