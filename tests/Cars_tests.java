@@ -16,7 +16,6 @@ public class Cars_tests  {
     car.startEngine();
     car.move();
     assertTrue(car.getY() > 0, "Car should have moved up");
-
  }
 
  @Test

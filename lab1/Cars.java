@@ -9,14 +9,13 @@ import java.awt.Color;
         public double enginePower;
         private String modelName;
 
-        public enum Coordinates { NORTH, SOUTH, WEST, EAST}
+        public enum Coordinates {NORTH, SOUTH, WEST, EAST}
 
         public Coordinates direction = Coordinates.NORTH;
 
         public Coordinates getDirection(){
             return direction;
         }
-
 
         public Cars(int nrDoors, Color color, double enginePower, String modelName) {
             this.nrDoors = nrDoors;
