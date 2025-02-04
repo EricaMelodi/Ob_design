@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public abstract class Scania extends Cars { // tror ej abstract?
+public abstract class Scania extends Car { // tror ej abstract?
     private double platformAngle;
 
     public Scania() {
@@ -13,7 +13,7 @@ public abstract class Scania extends Cars { // tror ej abstract?
     }
 
     public void raisePlatform(double angle) {
-        if (currentSpeed > 0) {
+        if (getCurrentSpeed() > 0) {
             throw new IllegalArgumentException("Platform can't raise while Scania is moving.");
         }
         platformAngle += angle;
