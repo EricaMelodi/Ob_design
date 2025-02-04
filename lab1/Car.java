@@ -2,11 +2,11 @@
 import java.awt.Color;
 
 
-    public abstract class Cars implements Movable {
+    public abstract class Car implements Movable {
         private int nrDoors;
         private Color color;
-        public double currentSpeed;
-        public double enginePower;
+        private double currentSpeed;
+        private double enginePower;
         private String modelName;
 
         public enum Coordinates { NORTH, SOUTH, WEST, EAST}
@@ -18,7 +18,7 @@ import java.awt.Color;
         }
 
 
-        public Cars(int nrDoors, Color color, double enginePower, String modelName) {
+        public Car(int nrDoors, Color color, double enginePower, String modelName) {
             this.nrDoors = nrDoors;
             this.color = color;
             this.enginePower = enginePower;
@@ -76,11 +76,7 @@ import java.awt.Color;
             return enginePower;
         }
 
-
         public double getCurrentSpeed() {
-            if (currentSpeed < 0 || currentSpeed > enginePower) {
-                throw new IllegalArgumentException("Current speed need to be between 0 and 1");
-        }
             return currentSpeed;
         }
 
@@ -102,9 +98,13 @@ import java.awt.Color;
 
         public abstract double speedFactor();
 
-        public abstract void incrementSpeed(double amount);
+        public void incrementSpeed(double amount) {
+            currentSpeed = getCurrentSpeed() + speedFactor() * amount;
+        }
 
-        public abstract void decrementSpeed(double amount);
+        public void decrementSpeed(double amount) {
+            currentSpeed = getCurrentSpeed() - speedFactor() * amount;
+        }
 
 
        public void gas(double amount) {
@@ -112,10 +112,6 @@ import java.awt.Color;
                 throw new IllegalArgumentException("Amount must be between 0 and 1");
             }
             incrementSpeed(amount);
-            double oldSpeed = currentSpeed;
-            if ( currentSpeed < oldSpeed){
-                throw new IllegalArgumentException("Gas method should not reduce speed");
-            }
         }
 
         public void brake(double amount) {
