@@ -1,30 +1,30 @@
 import java.awt.*;
+import java.util.ArrayList;
 
-public class truck1900 extends Car implements IHasPlatform {
+public class truck1900 extends Truck implements IHasPlatform {
 
         public truck1900() {
             super(2, Color.red, 85, "Truck1900");
         }
 
-    @Override
-    public double speedFactor() {
-        return 0;
-    }
+        ArrayList<Car> loadedCars = new ArrayList<>(10);
 
-    @Override
-    public void raisePlatform(double angle) {
+        public void loadCars(){
+            if (platformAngle != 0){
 
-    }
+            }
 
-    @Override
-    public void lowerPlatform(double angle) {
+            for (int i = 0; i < loadedCars.size(); i++){
+                loadedCars.add();
+            }
+        }
 
-    }
+//        public void unloadeCars(){
+//            for (int i = [loadedCars.length - 1];  )
+//        }
 
-    @Override
-    public double getPlatformAngle() {
-        return 0;
-    }
+
+
 
     // lasta på och och av bilar
 
