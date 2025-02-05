@@ -34,6 +34,14 @@ public class Truck extends Car {
         }
     }
 
+    public void move() {
+        if (platformAngle == 0) {
+            super.move();
+        } else {
+            throw new IllegalArgumentException("Truck can't move while platform is up.");
+        }
+    }
+
 
 
 
