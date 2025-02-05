@@ -2,55 +2,58 @@ import java.awt.*;
 import java.util.Stack;
 
 public class Truck1900 extends Truck implements IHasPlatform {
+    private final Stack<Car> loadedCars;
+    final int MAX_CARS = 10;
+    final int MAX_WEIGHT_CAR = 2000;
 
-        public Truck1900() {
-            super(2, Color.red, 85, "Truck1900");
+    public Truck1900() {
+        super(2, Color.red, 85, "Truck1900");
+        this.loadedCars = new Stack<>();
+    }
+
+    public void loadCars(Car car, int weight) {
+        if (getCurrentSpeed() != 0) {
+            throw new IllegalArgumentException("Can't load cars while car is moving");
         }
-
-        Stack<Car> loadedCars;
-        final int MAX_CARS = 10;
-        final int MAX_WEIGHT_CAR = 2000;
-
-
-        public void loadCars(Car loadCar, int weight) {
-            if (getCurrentSpeed() != 0) {
-                throw new IllegalArgumentException("Can't load cars while car is moving");
-            } if (loadCar instanceof Truck){ //när load car är ett objekt fråpn truck använd instencOf.
-                throw new IllegalArgumentException("Can't load truck in a truck");
-            } if (weight > MAX_WEIGHT_CAR){
-                throw new IllegalArgumentException ("Car is to big");
-            }
-            else {
-                if (loadedCars.size() < MAX_CARS) {
-                    loadedCars.push(loadCar);
-
-                } else {
-                    throw new IllegalArgumentException("Truck is full");
-                }
-            }
+        if (getPlatformAngle() > 0) {
+            throw new IllegalArgumentException("Platform must be down to load the cars.");
         }
-            // Fråga om vart bil ska befinna sig för att få lastas??
+        if (car instanceof Truck) { //när load car är ett objekt fråpn truck använd instencOf.
+            throw new IllegalArgumentException("Can't load a truck in a truck");
+        }
+        if (weight > MAX_WEIGHT_CAR) {
+            throw new IllegalArgumentException("Car is to big");
 
-        public void unloadCars(Car unloadCar){
-            if (getCurrentSpeed() != 0){
-                throw new IllegalArgumentException("Can't unload cars while car is moving");
+        } else {
+            if (loadedCars.size() < MAX_CARS) {
+                loadedCars.push(car);
+                whileCarInTruck();
             } else {
-                loadedCars.pop();
+                throw new IllegalArgumentException("Truck is full");
             }
         }
+    }
+    // Fråga om vart bil ska befinna sig för att få lastas??
 
-        public void whileCarInTruck() {
-           for (Car car : loadedCars){
-               car.direction = truck1900.direction;
-           }
+    public void unloadCars(Car car) {
+        if (getCurrentSpeed() != 0) {
+            throw new IllegalArgumentException("Can't unload cars while car is moving");
         }
+        if (getPlatformAngle() > 0) {
+            throw new IllegalArgumentException("Can't unload cars while platform is raised");
+        }
+        if (loadedCars.isEmpty()) {
+            throw new IllegalArgumentException("No cars left to unload");
+        } else {
+            loadedCars.pop();
+        }
+    }
 
-
-    // lasta på och och av bilar
-
-    // Max anatal bilar på last
-
-    // Max storlek på bilar som ska lastas
-
+    public void whileCarInTruck() {
+        for (Car car : loadedCars) {
+            car.direction = this.direction;
+        }
+    }
 }
+
 

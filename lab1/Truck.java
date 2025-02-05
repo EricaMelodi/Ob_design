@@ -41,8 +41,4 @@ public class Truck extends Car {
             throw new IllegalArgumentException("Truck can't move while platform is up.");
         }
     }
-
-
-
-
 }
