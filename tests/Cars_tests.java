@@ -78,7 +78,14 @@ public class Cars_tests  {
      assertEquals(0, car.getCurrentSpeed());
 }
 
-
+@Test
+    public void MaxAngleScania(){
+     Scania truck = new Scania();
+     truck.raisePlatform(90);
+     assertEquals(70,truck.getPlatformAngle(), "Should not be more than 70");
+     }
 }
+
+
 
 

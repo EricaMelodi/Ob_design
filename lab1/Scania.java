@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public abstract class Scania extends Car { // tror ej abstract?
+public class Scania extends Car implements IHasPlatform {
     private double platformAngle;
 
     public Scania() {
@@ -37,4 +37,11 @@ public abstract class Scania extends Car { // tror ej abstract?
             throw new IllegalArgumentException("Scania can't move while platform is up.");
         }
     }
+
+    @Override
+    public double speedFactor() {
+        return 0;
+    }
+
+
 }
