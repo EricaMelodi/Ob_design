@@ -5,12 +5,14 @@ public class Truck1900 extends Truck implements IHasPlatform {
     private final Stack<Car> loadedCars;
     final int MAX_CARS = 10;
     final int MAX_WEIGHT_CAR = 2000;
-    private String truckdirection;
-
 
     public Truck1900() {
         super(2, Color.red, 85, "Truck1900");
         this.loadedCars = new Stack<>();
+    }
+
+    public boolean isNear (Car car) {
+        return Math.abs(car.getX() - this.getX()) < 3 && Math.abs(car.getY() - this.getY()) < 3;
     }
 
     public void loadCars(Car car, int weight) {
@@ -21,19 +23,20 @@ public class Truck1900 extends Truck implements IHasPlatform {
             throw new IllegalArgumentException("Platform must be down to load the cars.");
         }
         if (weight > MAX_WEIGHT_CAR) {
-            throw new IllegalArgumentException("Car is to big");
-        } else {
-           if (loadedCars.size() < MAX_CARS) {
-               loadedCars.push(car);
-               //whileCarInTruck();
-            } else {
-                throw new IllegalArgumentException("Truck is full");
-            }
+            throw new IllegalArgumentException("Car is to heavy");
         }
-    }
-    // Fråga om vart bil ska befinna sig för att få lastas??
+        if (loadedCars.size() >= MAX_CARS) {
+            throw new IllegalArgumentException("Truck is full");
+        }
+        if (!isNear(car)) {
+            throw new IllegalArgumentException("Car is too far away to be loaded");
+        }
+        loadedCars.push(car);
+        posWhileInTruck();
+        }
 
-    public void unloadCars(Car car) {
+
+    public void unloadCars() {
         if (getCurrentSpeed() != 0) {
             throw new IllegalArgumentException("Can't unload cars while car is moving");
         }
@@ -42,16 +45,16 @@ public class Truck1900 extends Truck implements IHasPlatform {
         }
         if (loadedCars.isEmpty()) {
             throw new IllegalArgumentException("No cars left to unload");
-        } else {
-            loadedCars.pop();
         }
+        loadedCars.pop();
     }
 
-//    public void whileCarInTruck() {
-//        for (Car car : loadedCars) {
-//            car.setDirection(truckdirection);  //
-//        }
-//    }
+    public void posWhileInTruck() {
+        for (Car car : loadedCars) {
+            car.setDirection(getDirection());
+            car.setPosition(getX(), getY());
+        }
+    }
 }
 
 
