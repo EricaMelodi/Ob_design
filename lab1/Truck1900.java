@@ -18,12 +18,8 @@ public class Truck1900 extends Truck implements IHasPlatform {
         if (getPlatformAngle() > 0) {
             throw new IllegalArgumentException("Platform must be down to load the cars.");
         }
-        if (car instanceof Truck) { //när load car är ett objekt fråpn truck använd instencOf.
-            throw new IllegalArgumentException("Can't load a truck in a truck");
-        }
         if (weight > MAX_WEIGHT_CAR) {
             throw new IllegalArgumentException("Car is to big");
-
         } else {
             if (loadedCars.size() < MAX_CARS) {
                 loadedCars.push(car);
