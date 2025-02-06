@@ -6,7 +6,7 @@ public class Bilverkstad<Vehicle extends Car> {
      private ArrayList<Vehicle> carsInGarage;
 
 
-    public Bilverkstad ( int MAX_CARS){
+    public Bilverkstad (int MAX_CARS){
         this.MAX_CARS = MAX_CARS;
         this.carsInGarage = new ArrayList<>();
     }
@@ -29,6 +29,8 @@ public class Bilverkstad<Vehicle extends Car> {
     }
 
 }
+
+
 
 
 

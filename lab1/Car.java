@@ -13,12 +13,16 @@ import java.awt.Color;
 
         private Coordinates direction = Coordinates.NORTH;
 
-        private Coordinates getDirection(){
+        public Coordinates getDirection(){
             return direction;
         }
 
+        public void setDirection(){
+            this.direction = direction;
+        }
 
-        private Car(int nrDoors, Color color, double enginePower, String modelName) {
+
+        public Car(int nrDoors, Color color, double enginePower, String modelName) {
             this.nrDoors = nrDoors;
             this.color = color;
             this.enginePower = enginePower;

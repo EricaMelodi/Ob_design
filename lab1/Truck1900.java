@@ -5,6 +5,8 @@ public class Truck1900 extends Truck implements IHasPlatform {
     private final Stack<Car> loadedCars;
     final int MAX_CARS = 10;
     final int MAX_WEIGHT_CAR = 2000;
+    private String truckdirection;
+
 
     public Truck1900() {
         super(2, Color.red, 85, "Truck1900");
@@ -47,7 +49,7 @@ public class Truck1900 extends Truck implements IHasPlatform {
 
     public void whileCarInTruck() {
         for (Car car : loadedCars) {
-            car.direction = this.direction;
+            car.setDirection(truckdirection);  //
         }
     }
 }
