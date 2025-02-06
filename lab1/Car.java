@@ -17,7 +17,7 @@ import java.awt.Color;
             return direction;
         }
 
-        public void setDirection(){
+        public void setDirection(Coordinates direction){
             this.direction = direction;
         }
 
@@ -105,12 +105,17 @@ import java.awt.Color;
 
         private void incrementSpeed(double amount) {
             currentSpeed = getCurrentSpeed() + speedFactor() * amount;
+            if (currentSpeed > enginePower){
+                currentSpeed = enginePower;
+            }
         }
 
         private void decrementSpeed(double amount) {
             currentSpeed = getCurrentSpeed() - speedFactor() * amount;
+            if (currentSpeed < 0){
+                currentSpeed = 0;
+            }
         }
-
 
        public void gas(double amount) {
             if (amount < 0 || amount > 1) {
