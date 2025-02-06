@@ -101,13 +101,13 @@ import java.awt.Color;
             currentSpeed = 0;
         }
 
-        public abstract double speedFactor();
+        protected abstract double speedFactor();
 
-        public void incrementSpeed(double amount) {
+        private void incrementSpeed(double amount) {
             currentSpeed = getCurrentSpeed() + speedFactor() * amount;
         }
 
-        public void decrementSpeed(double amount) {
+        private void decrementSpeed(double amount) {
             currentSpeed = getCurrentSpeed() - speedFactor() * amount;
         }
 
@@ -132,3 +132,7 @@ import java.awt.Color;
             }
         }
     }
+
+
+
+

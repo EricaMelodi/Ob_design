@@ -1,6 +1,7 @@
 
 
 import org.junit.jupiter.api.Test;
+
 import java.awt.Color;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -83,6 +84,16 @@ public class Cars_tests {
         assertEquals(70, truck.getPlatformAngle(), "Should not be more than 70");
     }
 
+    @Test
+    public void gasTooMuch() {
+        Volvo240 car = new Volvo240();
+        car.startEngine();
+        assertThrows(IllegalArgumentException.class, () -> car.gas(2));
+    }
+
+
+
+
 //    @Test
 //    public void addCarInTruck(){
 //        truck1900 truck = new truck1900();
@@ -105,9 +116,6 @@ public class Cars_tests {
 //        }
 //        assertTrue(false, "can't load more than 10 cars");
 //    }
-
-
-
 
 
 }

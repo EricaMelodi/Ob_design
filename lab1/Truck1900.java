@@ -23,9 +23,9 @@ public class Truck1900 extends Truck implements IHasPlatform {
         if (weight > MAX_WEIGHT_CAR) {
             throw new IllegalArgumentException("Car is to big");
         } else {
-            if (loadedCars.size() < MAX_CARS) {
-                loadedCars.push(car);
-                whileCarInTruck();
+           if (loadedCars.size() < MAX_CARS) {
+               loadedCars.push(car);
+               //whileCarInTruck();
             } else {
                 throw new IllegalArgumentException("Truck is full");
             }
@@ -47,11 +47,11 @@ public class Truck1900 extends Truck implements IHasPlatform {
         }
     }
 
-    public void whileCarInTruck() {
-        for (Car car : loadedCars) {
-            car.setDirection(truckdirection);  //
-        }
-    }
+//    public void whileCarInTruck() {
+//        for (Car car : loadedCars) {
+//            car.setDirection(truckdirection);  //
+//        }
+//    }
 }
 
 
