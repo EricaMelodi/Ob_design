@@ -24,20 +24,13 @@ public class Bilverkstad<Vehicle extends Car> {
 
     }
 
-    public void takeOutCar(Vehicle car){
-        carsInGarage.remove(car);
+    public void takeOutCar(Vehicle car) {
+        if (carsInGarage.contains(car)) {
+            carsInGarage.remove(car);
+        } else {
+            throw new IllegalArgumentException("Car is not in the garage!");
+        }
     }
-
 }
 
-
-
-
-
-// Te emot "lasta" ett max antal bilar
-// Varierar mellan olika verkstäder
-
-// En viss sorts bilar hos vissa verkstäder
-
-// compile time fel när fel bil i verkstad
 
