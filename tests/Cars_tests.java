@@ -94,7 +94,7 @@ public class Cars_tests {
 
     @Test
     public void addCarInTruck() {
-        Truck1900 truck = new Truck1900();
+        CarTransport truck = new CarTransport();
         Saab95 car = new Saab95();
         truck.startEngine();
         truck.move();

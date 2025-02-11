@@ -1,12 +1,12 @@
 import java.awt.*;
 import java.util.Stack;
 
-public class Truck1900 extends Truck {
+public class CarTransport extends Truck implements HasContainer {
     private final Stack<Car> loadedCars;
     final int MAX_CARS = 10;
     final int MAX_WEIGHT_CAR = 2000;
 
-    public Truck1900() {
+    public CarTransport() {
         super(2, Color.red, 85, "Truck1900");
         this.loadedCars = new Stack<>();
     }
