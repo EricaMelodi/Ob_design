@@ -92,6 +92,29 @@ public class Cars_tests {
     }
 
 
+    @Test
+    public void addCarInTruck() {
+        Truck1900 truck = new Truck1900();
+        Saab95 car = new Saab95();
+        truck.startEngine();
+        truck.move();
+        assertThrows(IllegalArgumentException.class, () -> truck.loadCars(car, 1500));
+    }
+
+    @Test
+    public void garageIsFull(){
+        Bilverkstad<Volvo240> volvoVerkstad = new Bilverkstad<>(2);
+        Volvo240 volvo240 = new Volvo240();
+        Volvo240 volvo241 = new Volvo240();
+        Volvo240 volvo242 = new Volvo240();
+
+        volvoVerkstad.takeInCar(volvo240);
+        volvoVerkstad.takeInCar(volvo241);
+        assertThrows(IllegalArgumentException.class, () -> volvoVerkstad.takeInCar(volvo240));
+    }
+
+
+
 //    @Test
 //    public void addCarInTruck(){
 //        truck1900 truck = new truck1900();

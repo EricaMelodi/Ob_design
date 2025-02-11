@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class Bilverkstad <Vehicle extends Car> {
-     private Vehicle v;
      private int MAX_CARS;
      private ArrayList<Vehicle> carsInGarage;
 
@@ -11,9 +10,6 @@ public class Bilverkstad <Vehicle extends Car> {
         this.carsInGarage = new ArrayList<>();
     }
 
-    public Vehicle getVehicle(){
-        return v;
-    }
 
     public void takeInCar(Vehicle car){
        if (carsInGarage.size() < MAX_CARS){
@@ -36,14 +32,20 @@ public class Bilverkstad <Vehicle extends Car> {
 
     public static void main(String[] args) {
 
-        Bilverkstad<Volvo240> volvoVerkstad = new Bilverkstad<>(3);
+        Bilverkstad<Volvo240> volvoVerkstad = new Bilverkstad<>(5);
 
-        volvoVerkstad.takeInCar(Saab95);
-        volvoVerkstad.takeInCar(Volvo240);
-        volvoVerkstad.takeInCar(Volvo240);
-        volvoVerkstad.takeInCar(Volvo240);
+        Volvo240 Volvo = new Volvo240();
+        Volvo240 Volvo240 = new Volvo240();
 
+        Saab95 Saab95 = new Saab95();
+     // volvoVerkstad.takeInCar(Saab95);
+        volvoVerkstad.takeInCar(Volvo240);
+        volvoVerkstad.takeInCar(Volvo240);
+        volvoVerkstad.takeInCar(Volvo240);
      }
+
+
+
 }
 
 
