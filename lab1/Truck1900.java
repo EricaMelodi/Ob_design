@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.Stack;
 
-public class Truck1900 extends Truck implements IHasPlatform {
+public class Truck1900 extends Truck {
     private final Stack<Car> loadedCars;
     final int MAX_CARS = 10;
     final int MAX_WEIGHT_CAR = 2000;
@@ -23,7 +23,7 @@ public class Truck1900 extends Truck implements IHasPlatform {
             throw new IllegalArgumentException("Platform must be down to load the cars.");
         }
         if (weight > MAX_WEIGHT_CAR) {
-            throw new IllegalArgumentException("Car is to heavy");
+            throw new IllegalArgumentException("Car is too heavy");
         }
         if (loadedCars.size() >= MAX_CARS) {
             throw new IllegalArgumentException("Truck is full");

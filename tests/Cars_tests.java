@@ -113,6 +113,14 @@ public class Cars_tests {
         assertThrows(IllegalArgumentException.class, () -> volvoVerkstad.takeInCar(volvo240));
     }
 
+    @Test
+    public void garageIsEmpty(){
+        Bilverkstad<Volvo240> volvoVerkstad = new Bilverkstad<>(2);
+        Volvo240 volvo240 = new Volvo240();
+        assertThrows(IllegalArgumentException.class, () -> volvoVerkstad.takeOutCar(volvo240));
+    }
+
+
 
 
 //    @Test

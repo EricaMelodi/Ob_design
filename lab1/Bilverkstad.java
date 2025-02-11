@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+
+//generic type
+//
+
 public class Bilverkstad <Vehicle extends Car> {
      private int MAX_CARS;
      private ArrayList<Vehicle> carsInGarage;
