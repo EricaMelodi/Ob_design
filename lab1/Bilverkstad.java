@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Bilverkstad<Vehicle extends Car> {
+public class Bilverkstad <Vehicle extends Car> {
      private Vehicle v;
      private int MAX_CARS;
      private ArrayList<Vehicle> carsInGarage;
@@ -31,6 +31,19 @@ public class Bilverkstad<Vehicle extends Car> {
             throw new IllegalArgumentException("Car is not in the garage!");
         }
     }
+
+    // Test: Kommentera bort nere för att se om det fungerar!
+
+    public static void main(String[] args) {
+
+        Bilverkstad<Volvo240> volvoVerkstad = new Bilverkstad<>(3);
+
+        volvoVerkstad.takeInCar(Saab95);
+        volvoVerkstad.takeInCar(Volvo240);
+        volvoVerkstad.takeInCar(Volvo240);
+        volvoVerkstad.takeInCar(Volvo240);
+
+     }
 }
 
 

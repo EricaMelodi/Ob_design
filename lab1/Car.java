@@ -133,14 +133,9 @@ import java.awt.Color;
                 throw new IllegalArgumentException("Amount must be between 0 and 1");
             }
             decrementSpeed(amount);
-            double oldSpeed = currentSpeed;
-            if (currentSpeed > oldSpeed) {
-                throw new IllegalArgumentException("Break method should not increase speed");
-            } if (amount > currentSpeed) {
-                currentSpeed = 0;
             }
         }
-    }
+
 
 
 

@@ -92,8 +92,6 @@ public class Cars_tests {
     }
 
 
-
-
 //    @Test
 //    public void addCarInTruck(){
 //        truck1900 truck = new truck1900();
