@@ -5,7 +5,6 @@ public class CarTransport extends Vehicle implements HasContainer {
     private final Stack<Vehicle> loadedCars;
     final int MAX_CARS = 10;
     final int MAX_WEIGHT_CAR = 2000;
-    boolean open;
     private boolean isPlatformOpen = false;
 
     public CarTransport() {

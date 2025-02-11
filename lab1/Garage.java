@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class Bilverkstad <T extends Vehicle> {
+public class Garage<T extends Vehicle> {
      private int MAX_CARS;
      private ArrayList<T> carsInGarage;
 
 
-    public Bilverkstad (int MAX_CARS){
+    public Garage(int MAX_CARS){
         this.MAX_CARS = MAX_CARS;
         this.carsInGarage = new ArrayList<>();
     }
@@ -32,7 +32,7 @@ public class Bilverkstad <T extends Vehicle> {
 
     public static void main(String[] args) {
 
-        Bilverkstad<Volvo240> volvoVerkstad = new Bilverkstad<>(5);
+        Garage<Volvo240> volvoVerkstad = new Garage<>(5);
 
         Volvo240 Volvo = new Volvo240();
         Volvo240 Volvo240 = new Volvo240();

@@ -14,5 +14,4 @@ public interface HasContainer {
 
     void openPlatform();
 
-
 }

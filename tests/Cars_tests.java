@@ -103,7 +103,7 @@ public class Cars_tests {
 
     @Test
     public void garageIsFull(){
-        Bilverkstad<Volvo240> volvoVerkstad = new Bilverkstad<>(2);
+        Garage<Volvo240> volvoVerkstad = new Garage<>(2);
         Volvo240 volvo240 = new Volvo240();
         Volvo240 volvo241 = new Volvo240();
         Volvo240 volvo242 = new Volvo240();
@@ -115,7 +115,7 @@ public class Cars_tests {
 
     @Test
     public void garageIsEmpty(){
-        Bilverkstad<Volvo240> volvoVerkstad = new Bilverkstad<>(2);
+        Garage<Volvo240> volvoVerkstad = new Garage<>(2);
         Volvo240 volvo240 = new Volvo240();
         assertThrows(IllegalArgumentException.class, () -> volvoVerkstad.takeOutCar(volvo240));
     }
