@@ -1,8 +1,7 @@
 public interface HasPlatform {
 
-    public void raisePlatform();
+   void raisePlatform(double angle);
 
-    public void lowerPlatform();
+   void lowerPlatform(double angle);
 
-    void lowerPlatform(double angle);
 }

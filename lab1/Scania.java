@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Scania extends Truck implements HasPlatform{
+public class Scania extends Vehicle implements HasPlatform{
     private double platformAngle;
 
     public Scania() {
@@ -8,11 +8,14 @@ public class Scania extends Truck implements HasPlatform{
         this.platformAngle = 0;
     }
 
-
-    @Override
     public double speedFactor() {
         return 0;
     }
+
+    public double getPlatformAngle() {
+        return platformAngle;
+    }
+
 
     @Override
     public void raisePlatform(double angle) {
@@ -32,5 +35,4 @@ public class Scania extends Truck implements HasPlatform{
             platformAngle = 0;
         }
     }
-
 }

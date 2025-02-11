@@ -13,12 +13,6 @@ public class Truck extends Vehicle {
         return 0;
     }
 
-    public double getPlatformAngle() {
-        return platformAngle;
-    }
-
-
-
     public void move() {
         if (platformAngle == 0) {
             super.move();
