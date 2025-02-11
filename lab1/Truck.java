@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Truck extends Car {
+public class Truck extends Vehicle {
 
     double platformAngle;
 
@@ -17,22 +17,7 @@ public class Truck extends Car {
         return platformAngle;
     }
 
-    public void raisePlatform(double angle) {
-        if (getCurrentSpeed() > 0) {
-            throw new IllegalArgumentException("Platform can't raise while Scania is moving.");
-        }
-        platformAngle += angle;
-        if (platformAngle > 70) {
-            platformAngle = 70;
-        }
-    }
 
-    public void lowerPlatform(double angle) {
-        platformAngle -= angle;
-        if (platformAngle < 0) {
-            platformAngle = 0;
-        }
-    }
 
     public void move() {
         if (platformAngle == 0) {

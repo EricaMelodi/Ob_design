@@ -2,20 +2,36 @@ import java.awt.*;
 import java.util.Stack;
 
 public class CarTransport extends Truck implements HasContainer {
-    private final Stack<Car> loadedCars;
+    private final Stack<Vehicle> loadedCars;
     final int MAX_CARS = 10;
     final int MAX_WEIGHT_CAR = 2000;
+    boolean open;
 
     public CarTransport() {
         super(2, Color.red, 85, "Truck1900");
         this.loadedCars = new Stack<>();
     }
 
-    public boolean isNear (Car car) {
+    public boolean isOpen(){
+        return open;
+    }
+
+
+    public boolean raisePlatform(){
+        return false;
+    }
+
+    @Override
+    public boolean lowerPlatform(){
+        throw new IllegalArgumentException("");
+    }
+
+
+    public boolean isNear (Vehicle car) {
         return Math.abs(car.getX() - this.getX()) < 3 && Math.abs(car.getY() - this.getY()) < 3;
     }
 
-    public void loadCars(Car car, int weight) {
+    public void loadCars(Vehicle car, int weight) {
         if (getCurrentSpeed() != 0) {
             throw new IllegalArgumentException("Can't load cars while car is moving");
         }
@@ -50,11 +66,13 @@ public class CarTransport extends Truck implements HasContainer {
     }
 
     public void posWhileInTruck() {
-        for (Car car : loadedCars) {
+        for (Vehicle car : loadedCars) {
             car.setDirection(getDirection());
             car.setPosition(getX(), getY());
         }
     }
+
+
 }
 
 

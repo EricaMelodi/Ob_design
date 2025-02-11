@@ -2,14 +2,14 @@
 import java.awt.Color;
 
 
-    public abstract class Car implements Movable {
+    public abstract class Vehicle implements Movable {
         private int nrDoors;
         private Color color;
         private double currentSpeed;
         private double enginePower;
         private String modelName;
 
-        public Car(int nrDoors, Color color, double enginePower, String modelName) {
+        public Vehicle(int nrDoors, Color color, double enginePower, String modelName) {
             this.nrDoors = nrDoors;
             this.color = color;
             this.enginePower = enginePower;

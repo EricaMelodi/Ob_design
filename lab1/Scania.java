@@ -14,5 +14,23 @@ public class Scania extends Truck implements HasPlatform{
         return 0;
     }
 
+    @Override
+    public void raisePlatform(double angle) {
+        if (getCurrentSpeed() > 0) {
+            throw new IllegalArgumentException("Platform can't raise while Scania is moving.");
+        }
+        platformAngle += angle;
+        if (platformAngle > 70) {
+            platformAngle = 70;
+        }
+    }
+
+    @Override
+    public void lowerPlatform(double angle) {
+        platformAngle -= angle;
+        if (platformAngle < 0) {
+            platformAngle = 0;
+        }
+    }
 
 }
