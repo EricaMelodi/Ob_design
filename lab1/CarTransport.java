@@ -13,12 +13,8 @@ public class CarTransport extends Vehicle implements HasContainer {
         this.loadedCars = new Stack<>();
     }
 
-    public boolean platFormIsRaised() {
-        return open;
-    }
-
-    public boolean platFormIsLowered() {
-        return closed;
+    public void platFormIsRaised() {
+        open = true;
     }
 
     public boolean isNear (Vehicle car) {
@@ -29,8 +25,8 @@ public class CarTransport extends Vehicle implements HasContainer {
         if (getCurrentSpeed() != 0) {
             throw new IllegalArgumentException("Can't load cars while car is moving");
         }
-        if (!platFormIsRaised()) {
-            throw new IllegalArgumentException("Platform must be down to load the cars.");
+        if (!open) {
+            throw new IllegalArgumentException("Platform must be open to load the cars.");
         }
         if (weight > MAX_WEIGHT_CAR) {
             throw new IllegalArgumentException("Car is too heavy");
@@ -50,8 +46,8 @@ public class CarTransport extends Vehicle implements HasContainer {
         if (getCurrentSpeed() != 0) {
             throw new IllegalArgumentException("Can't unload cars while car is moving");
         }
-        if (!platFormIsLowered()) {
-            throw new IllegalArgumentException("Can't unload cars while platform is raised");
+        if (!open) {
+            throw new IllegalArgumentException("Can't unload cars while platform is closed");
         }
         if (loadedCars.isEmpty()) {
             throw new IllegalArgumentException("No cars left to unload");
@@ -66,7 +62,6 @@ public class CarTransport extends Vehicle implements HasContainer {
         }
     }
 
-    @Override
     protected double speedFactor() {
         return 0;
     }

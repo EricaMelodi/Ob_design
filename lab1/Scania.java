@@ -35,4 +35,12 @@ public class Scania extends Vehicle implements HasPlatform{
             platformAngle = 0;
         }
     }
+
+    public void move() {
+        if (platformAngle == 0) {
+            super.move();
+        } else {
+            throw new IllegalArgumentException("Truck can't move while platform is up.");
+        }
+    }
 }

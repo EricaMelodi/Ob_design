@@ -1,10 +1,13 @@
 public interface HasContainer {
 
-    public void loadCars(Vehicle car, int weight);
+    void loadCars(Vehicle car, int weight);
 
-    public void unloadCars();
+    void unloadCars();
 
-    public void posWhileCarInTransport();
+    void posWhileCarInTransport();
 
-    public  boolean isNear(Vehicle car);
+    boolean isNear(Vehicle car);
+
+    void platFormIsRaised();
+
 }

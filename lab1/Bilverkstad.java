@@ -1,12 +1,8 @@
 import java.util.ArrayList;
 
-
-//generic type
-//
-
-public class Bilverkstad <Vehicle extends Vehicle> {
+public class Bilverkstad <T extends Vehicle> {
      private int MAX_CARS;
-     private ArrayList<Vehicle> carsInGarage;
+     private ArrayList<T> carsInGarage;
 
 
     public Bilverkstad (int MAX_CARS){
@@ -15,7 +11,7 @@ public class Bilverkstad <Vehicle extends Vehicle> {
     }
 
 
-    public void takeInCar(Vehicle car){
+    public void takeInCar(T car){
        if (carsInGarage.size() < MAX_CARS){
            carsInGarage.add(car);
        } else {
@@ -24,7 +20,7 @@ public class Bilverkstad <Vehicle extends Vehicle> {
 
     }
 
-    public void takeOutCar(Vehicle car) {
+    public void takeOutCar(T car) {
         if (carsInGarage.contains(car)) {
             carsInGarage.remove(car);
         } else {
