@@ -6,15 +6,26 @@ public class CarTransport extends Vehicle implements HasContainer {
     final int MAX_CARS = 10;
     final int MAX_WEIGHT_CAR = 2000;
     boolean open;
-    boolean closed;
+    private boolean isPlatformOpen = false;
 
     public CarTransport() {
         super(2, Color.red, 85, "Truck1900");
         this.loadedCars = new Stack<>();
     }
 
-    public void platFormIsRaised() {
-        open = true;
+    public void openPlatform() {
+        if (getCurrentSpeed() > 0) {
+            throw new IllegalArgumentException("Cannot open platform while the transport is moving.");
+        }
+        isPlatformOpen = true;
+    }
+
+    public void closePlatform() {
+        isPlatformOpen = false;
+    }
+
+    public boolean isPlatformOpen() {
+        return isPlatformOpen;
     }
 
     public boolean isNear (Vehicle car) {
@@ -25,7 +36,7 @@ public class CarTransport extends Vehicle implements HasContainer {
         if (getCurrentSpeed() != 0) {
             throw new IllegalArgumentException("Can't load cars while car is moving");
         }
-        if (!open) {
+        if (!isPlatformOpen) {
             throw new IllegalArgumentException("Platform must be open to load the cars.");
         }
         if (weight > MAX_WEIGHT_CAR) {
@@ -46,7 +57,7 @@ public class CarTransport extends Vehicle implements HasContainer {
         if (getCurrentSpeed() != 0) {
             throw new IllegalArgumentException("Can't unload cars while car is moving");
         }
-        if (!open) {
+        if (!isPlatformOpen) {
             throw new IllegalArgumentException("Can't unload cars while platform is closed");
         }
         if (loadedCars.isEmpty()) {

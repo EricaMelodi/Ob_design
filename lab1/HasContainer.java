@@ -8,6 +8,11 @@ public interface HasContainer {
 
     boolean isNear(Vehicle car);
 
-    void platFormIsRaised();
+    boolean isPlatformOpen();
+
+    void closePlatform();
+
+    void openPlatform();
+
 
 }
