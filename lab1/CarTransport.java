@@ -75,6 +75,13 @@ public class CarTransport extends Vehicle implements HasContainer {
     protected double speedFactor() {
         return 0;
     }
+
+    @Override
+    public void move(){
+        super.move();
+        posWhileCarInTransport();
+    }
+
 }
 
 

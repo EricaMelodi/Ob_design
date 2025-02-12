@@ -101,6 +101,7 @@ public class Cars_tests {
         assertThrows(IllegalArgumentException.class, () -> truck.loadCars(car, 1500));
     }
 
+
     @Test
     public void garageIsFull(){
         Garage<Volvo240> volvoVerkstad = new Garage<>(2);
