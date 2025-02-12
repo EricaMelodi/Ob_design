@@ -1,4 +1,4 @@
-public interface HasContainer {
+public interface IHasContainer {
 
     void loadCars(Vehicle car, int weight);
 

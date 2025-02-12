@@ -1,4 +1,4 @@
-public interface HasPlatform {
+public interface IHasPlatform {
 
    void raisePlatform(double angle);
 

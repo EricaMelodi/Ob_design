@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Scania extends Vehicle implements HasPlatform{
+public class Scania extends Vehicle implements IHasPlatform {
     private double platformAngle;
 
     public Scania() {

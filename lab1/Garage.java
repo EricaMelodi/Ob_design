@@ -38,7 +38,7 @@ public class Garage<T extends Vehicle> {
         Volvo240 Volvo240 = new Volvo240();
 
         Saab95 Saab95 = new Saab95();
-     // volvoVerkstad.takeInCar(Saab95);
+        // volvoVerkstad.takeInCar(Saab95);
         volvoVerkstad.takeInCar(Volvo240);
         volvoVerkstad.takeInCar(Volvo240);
         volvoVerkstad.takeInCar(Volvo240);
