@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.Stack;
 
-public class CarTransport extends Vehicle implements HasContainer {
+public class CarTransport extends Vehicle implements IHasContainer {
     private final Stack<Vehicle> loadedCars;
     final int MAX_CARS = 10;
     final int MAX_WEIGHT_CAR = 2000;

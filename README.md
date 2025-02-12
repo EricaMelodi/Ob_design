@@ -3,4 +3,3 @@ Lab assignment 1 in the course Object-oriented Programming and Design, GU/Chalme
 
 See Canvas for instructions.
 
-hello gang i am pushing this shiiiit

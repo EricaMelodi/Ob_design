@@ -2,7 +2,7 @@
 import java.awt.Color;
 
 
-    public abstract class Vehicle implements Movable {
+    public abstract class Vehicle implements IMovable {
         private int nrDoors;
         private Color color;
         private double currentSpeed;
