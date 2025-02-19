@@ -31,11 +31,11 @@ public class DrawPanel extends JPanel {
         this.setBackground(Color.green);
         // Print an error message in case file is not found with a try/catch block
         try {
-            volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
-            saabImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg"));
-            scaniaImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg"));
-            workshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/VolvoBrand.jpg"));
-            volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
+            ClassLoader classLoader = getClass().getClassLoader();
+            volvoImage = ImageIO.read(classLoader.getResourceAsStream("pics/Volvo240.jpg"));
+            saabImage = ImageIO.read(classLoader.getResourceAsStream("pics/Saab95.jpg"));
+            scaniaImage = ImageIO.read(classLoader.getResourceAsStream("pics/Scania.jpg"));
+            workshopImage = ImageIO.read(classLoader.getResourceAsStream("pics/VolvoBrand.jpg"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
