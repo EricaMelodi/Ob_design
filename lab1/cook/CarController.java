@@ -1,7 +1,10 @@
+package cook;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import TheOG.*;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -21,7 +24,8 @@ public class CarController {
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
-     ArrayList<Vehicle> cars = new ArrayList<>();
+    ArrayList<Vehicle> cars = new ArrayList<>();
+    Garage<Vehicle> workshop = new Garage<>(5);
 
     //methods:
 
@@ -29,7 +33,9 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-         cc.cars.add(new Volvo240());
+        cc.cars.add(new Volvo240());
+        cc.cars.add(new Saab95());
+        cc.cars.add(new Scania());
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -39,35 +45,40 @@ public class CarController {
     }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
-    * view to update its images. Change this method to your needs.
-    * */
+     * view to update its images. Change this method to your needs.
+     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (Vehicle car : cars) {
                 car.move();
                 int x = (int) Math.round(car.getX());
                 int y = (int) Math.round(car.getY());
-                frame.drawPanel.moveit(x, y);
-                // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
+
+                if (x < 0 || x > 700) {
+                    car.turnRight();
+                    car.turnRight();
+
+                    frame.drawPanel.moveit(x, y);
+                    // repaint() calls the paintComponent method of the panel
+                    frame.drawPanel.repaint();
+                }
             }
         }
     }
 
-    // Calls the gas method for each car once
-    void gas(double amount) {
-        double gas =  (amount) / 100;
-        for (Vehicle car : cars
-                ) {
-            car.gas(gas);
+        // Calls the gas method for each car once
+        public void gas(double amount) {
+            double gas = (amount) / 100;
+            for (Vehicle car : cars) {
+                car.gas(gas);
+            }
+        }
+
+        public void brake(double amount) {
+            double brakeAmount = amount / 100.0; // Convert to range 0-1
+            for (Vehicle car : cars) {
+                car.brake(brakeAmount);
+            }
         }
     }
 
-    void brake(double amount) {
-        double brakeAmount = amount / 100.0; // Convert to range 0-1
-        for (Vehicle car : cars) {
-            car.brake(brakeAmount);
-        }
-    }
-
-}

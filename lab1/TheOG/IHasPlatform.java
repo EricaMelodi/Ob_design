@@ -1,3 +1,5 @@
+package TheOG;
+
 public interface IHasPlatform {
 
    void raisePlatform(double angle);

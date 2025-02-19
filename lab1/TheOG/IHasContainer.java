@@ -1,3 +1,5 @@
+package TheOG;
+
 public interface IHasContainer {
 
     void loadCars(Vehicle car, int weight);

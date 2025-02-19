@@ -1,6 +1,7 @@
 
 
 import org.junit.jupiter.api.Test;
+import TheOG.*;
 
 import java.awt.Color;
 
@@ -103,7 +104,7 @@ public class Cars_tests {
 
 
     @Test
-    public void garageIsFull(){
+    public void garageIsFull() {
         Garage<Volvo240> volvoVerkstad = new Garage<>(2);
         Volvo240 volvo240 = new Volvo240();
         Volvo240 volvo241 = new Volvo240();
@@ -115,39 +116,11 @@ public class Cars_tests {
     }
 
     @Test
-    public void garageIsEmpty(){
+    public void garageIsEmpty() {
         Garage<Volvo240> volvoVerkstad = new Garage<>(2);
         Volvo240 volvo240 = new Volvo240();
         assertThrows(IllegalArgumentException.class, () -> volvoVerkstad.takeOutCar(volvo240));
     }
-
-
-
-
-//    @Test
-//    public void addCarInTruck(){
-//        truck1900 truck = new truck1900();
-//        Saab95 car = new Saab95();
-//        truck.startEngine();
-//        truck.loadCars(car);
-//        assertTrue(false, "can't load while truck is moving");
-//
-//    }
-//
-//
-//    @Test
-//   public void addCarToTruck(){
-//        truck1900 truck = new truck1900();
-//        Saab95 car = new Saab95();
-//        truck.stopEngine();
-//
-//        for (int i = 0; i < 11; i++){
-//            truck.loadCars(car);
-//        }
-//        assertTrue(false, "can't load more than 10 cars");
-//    }
-
-
 }
 
 

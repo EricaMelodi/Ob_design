@@ -1,10 +1,12 @@
+package TheOG;
+
 import java.awt.*;
 
 public class Scania extends Vehicle implements IHasPlatform {
     private double platformAngle;
 
     public Scania() {
-        super(2, Color.green, 90, "Scania");
+        super(2, Color.green, 90, "theog.Scania");
         this.platformAngle = 0;
     }
 
@@ -20,7 +22,7 @@ public class Scania extends Vehicle implements IHasPlatform {
     @Override
     public void raisePlatform(double angle) {
         if (getCurrentSpeed() > 0) {
-            throw new IllegalArgumentException("Platform can't raise while Scania is moving.");
+            throw new IllegalArgumentException("Platform can't raise while theog.Scania is moving.");
         }
         platformAngle += angle;
         if (platformAngle > 70) {

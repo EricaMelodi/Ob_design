@@ -1,9 +1,13 @@
+package cook;
+
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import TheOG.*;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -34,7 +38,7 @@ public class CarView extends JFrame {
     JButton brakeButton = new JButton("Brake");
     JButton turboOnButton = new JButton("Saab Turbo on");
     JButton turboOffButton = new JButton("Saab Turbo off");
-    JButton liftBedButton = new JButton("Scania Lift Bed");
+    JButton liftBedButton = new JButton("theog.Scania Lift Bed");
     JButton lowerBedButton = new JButton("Lower Lift Bed");
 
     JButton startButton = new JButton("Start all cars");
@@ -113,8 +117,7 @@ public class CarView extends JFrame {
                 carC.brake(gasAmount);
             }
         });
-
-
+        
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();
 
