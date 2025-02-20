@@ -32,9 +32,18 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240());
-        cc.cars.add(new Saab95());
-        cc.cars.add(new Scania());
+        Volvo240 volvo = new Volvo240();
+        volvo.setPosition(100, 0);
+
+        Saab95 saab95 = new Saab95();
+        saab95.setPosition(200, 0);
+
+        Scania scania = new Scania();
+        scania.setPosition(300,0);
+
+        cc.cars.add(volvo);
+        cc.cars.add(saab95);
+        cc.cars.add(scania);
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
