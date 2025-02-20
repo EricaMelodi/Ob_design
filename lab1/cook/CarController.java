@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import TheOG.*;
 
 /*
@@ -26,7 +27,8 @@ public class CarController {
     CarView frame;
     // A list of cars, modify if needed
     ArrayList<Vehicle> cars = new ArrayList<>();
-    Garage<Volvo240> volvoWorkShop = new Garage<>(3);
+    Garage<Volvo240> volvoWorkShop;
+
 
     //methods:
 
@@ -36,15 +38,19 @@ public class CarController {
 
         Garage<Volvo240> volvoWorkShop = new Garage<>(3);
         volvoWorkShop.setPosition(300, 300);
+        cc.volvoWorkShop = volvoWorkShop;
 
         Volvo240 volvo = new Volvo240();
-        volvo.setPosition(300, 0);
+        volvo.turnRight();
+        volvo.setPosition(0, 300);
 
         Saab95 saab95 = new Saab95();
-        saab95.setPosition(200, 0);
+        saab95.turnRight();
+        saab95.setPosition(0, 200);
 
         Scania scania = new Scania();
-        scania.setPosition(100, 0);
+        scania.turnRight();
+        scania.setPosition(0, 100);
 
         cc.cars.add(volvo);
         cc.cars.add(saab95);
@@ -80,12 +86,13 @@ public class CarController {
 
                 }
 
-                frame.drawPanel.moveit(car, y, x);
+                frame.drawPanel.moveit(car, x, y);
 
                 // repaint() calls the paintComponent method of the panel
 
                 frame.drawPanel.repaint();
             }
+            collision();
         }
     }
 
@@ -149,13 +156,18 @@ public class CarController {
     }
 
     void collision() {
+        ArrayList<Vehicle> toRemove = new ArrayList<>();
         for (Vehicle car : cars) {
-            Point carPos = car.getPosition();
-            volvoWorkpos = volvoWorkShop.setPosition(300, 300);
-            if (carPos.equals(volvoWorkPos) {
-
-
+            if (car instanceof Volvo240 volvo) {
+                Point carPos = car.getPosition();
+                Point workshopPos = volvoWorkShop.getPosition();
+                System.out.printf("Car is at %s, workshop is at %s\r", carPos, workshopPos);
+                if (carPos.equals(workshopPos)) {
+                    volvoWorkShop.takeInCar(volvo);
+                    toRemove.add(volvo);
+                }
             }
         }
+        cars.removeAll(toRemove);
     }
 }

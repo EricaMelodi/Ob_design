@@ -1,5 +1,6 @@
 package TheOG;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Garage<T extends Vehicle> {
@@ -26,6 +27,12 @@ public class Garage<T extends Vehicle> {
         this.x = x;
         this.y = y;
     }
+
+    public Point getPosition(){
+        return new Point(getX(), getY());
+    }
+
+
 
 
     public void takeInCar(T car){
