@@ -58,8 +58,12 @@ public class CarController {
                     car.turnLeft();
                     car.turnLeft();
 
+                    car.setPosition(Math.max(0, Math.min(494, car.getX())), Math.max(0, Math.min(494, car.getY())));
+
                     car.startEngine();
+
                 }
+
 
                 frame.drawPanel.moveit(x, y);
 
