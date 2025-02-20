@@ -32,6 +32,9 @@ public class Scania extends Vehicle implements IHasPlatform {
 
     @Override
     public void lowerPlatform(double angle) {
+        if (getCurrentSpeed()>0) {
+            throw new IllegalArgumentException("platform cant be lowered while Scania is moving");
+        }
         platformAngle -= angle;
         if (platformAngle < 0) {
             platformAngle = 0;
