@@ -161,10 +161,13 @@ public class CarController {
             if (car instanceof Volvo240 volvo) {
                 Point carPos = car.getPosition();
                 Point workshopPos = volvoWorkShop.getPosition();
-                System.out.printf("Car is at %s, workshop is at %s\r", carPos, workshopPos);
-                if (carPos.equals(workshopPos)) {
+                int xDiff = carPos.x - workshopPos.x;
+                int yDiff = carPos.y - workshopPos.y;
+                double dist = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+                if (dist < 10) {
                     volvoWorkShop.takeInCar(volvo);
                     toRemove.add(volvo);
+                    System.out.println("Your car has been taken in to the volvo workshop");
                 }
             }
         }
