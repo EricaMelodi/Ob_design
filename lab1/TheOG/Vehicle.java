@@ -22,6 +22,7 @@ import java.awt.Color;
 
         private Coordinates direction = Coordinates.NORTH;
 
+
         public Coordinates getDirection(){
             return direction;
         }

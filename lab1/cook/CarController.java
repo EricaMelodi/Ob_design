@@ -17,6 +17,7 @@ public class CarController {
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
+    boolean stopped = false;
     // The timer is started with a listener (see below) that executes the statements
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
@@ -50,7 +51,18 @@ public class CarController {
                 car.move();
                 int x = (int) Math.round(car.getX());
                 int y = (int) Math.round(car.getY());
-                frame.drawPanel.moveit(x, y);
+
+                if (x >= 495 || x < 0 || y >= 495 || y < 0) {
+                    car.stopEngine();
+                    stopped = true;
+                    frame.drawPanel.moveit(-x, -y);
+                }
+
+                if (x >= 0 || x < 495 || y >= 0 || y < 495) {
+                    car.turnLeft();
+                    car.turnLeft();
+                    frame.drawPanel.moveit(x, y);
+                }
 
                 // repaint() calls the paintComponent method of the panel
 
