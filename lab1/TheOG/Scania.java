@@ -6,7 +6,7 @@ public class Scania extends Vehicle implements IHasPlatform {
     private double platformAngle;
 
     public Scania() {
-        super(2, Color.green, 90, "theog.Scania");
+        super(2, Color.green, 90, "Scania");
         this.platformAngle = 0;
     }
 

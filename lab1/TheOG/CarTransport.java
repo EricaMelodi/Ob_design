@@ -10,7 +10,7 @@ public class CarTransport extends Vehicle implements IHasContainer {
     private boolean isPlatformOpen = false;
 
     public CarTransport() {
-        super(2, Color.red, 85, "Truck1900");
+        super(2, Color.red, 85, "CarTransport");
         this.loadedCars = new Stack<>();
     }
 

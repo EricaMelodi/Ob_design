@@ -17,7 +17,7 @@ public class Garage<T extends Vehicle> {
        if (carsInGarage.size() < MAX_CARS){
            carsInGarage.add(car);
        } else {
-           throw new IllegalArgumentException("theog.Garage is full");
+           throw new IllegalArgumentException("Garage is full");
        }
 
     }
