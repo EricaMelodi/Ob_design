@@ -26,6 +26,7 @@ public class CarController {
     CarView frame;
     // A list of cars, modify if needed
     ArrayList<Vehicle> cars = new ArrayList<>();
+    Garage<Volvo240> volvoWorkShop = new Garage<>(3);
 
     //methods:
 
@@ -91,7 +92,7 @@ public class CarController {
     // Calls the gas method for each car once
     void gas(int amount) {
         double gas = ((double) amount) / 100;
-       for (Vehicle car : cars) {
+        for (Vehicle car : cars) {
             car.gas(gas);
         }
     }
@@ -110,6 +111,7 @@ public class CarController {
             }
         }
     }
+
     void turboOff() {
         for (Vehicle car : cars) {
             if (car instanceof Saab95) {
@@ -143,6 +145,17 @@ public class CarController {
     void stopEngine() {
         for (Vehicle car : cars) {
             car.stopEngine();
+        }
+    }
+
+    void collision() {
+        for (Vehicle car : cars) {
+            Point carPos = car.getPosition();
+            volvoWorkpos = volvoWorkShop.setPosition(300, 300);
+            if (carPos.equals(volvoWorkPos) {
+
+
+            }
         }
     }
 }

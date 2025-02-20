@@ -1,9 +1,9 @@
 package TheOG;
 
-import java.awt.Color;
+import java.awt.*;
 
 
-    public abstract class Vehicle implements IMovable {
+public abstract class Vehicle implements IMovable {
         private int nrDoors;
         private Color color;
         private double currentSpeed;
@@ -45,6 +45,11 @@ import java.awt.Color;
         public void setPosition(double x, double y) {
             this.x = x;
             this.y = y;
+        }
+
+        public Point getPosition() {
+            return  new Point((int) getX(), (int) getY());
+
         }
 
         @Override
