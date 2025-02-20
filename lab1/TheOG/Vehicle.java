@@ -49,7 +49,6 @@ public abstract class Vehicle implements IMovable {
 
         public Point getPosition() {
             return  new Point((int) getX(), (int) getY());
-
         }
 
         @Override
