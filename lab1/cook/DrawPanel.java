@@ -24,6 +24,7 @@ public class DrawPanel extends JPanel{
     BufferedImage volvoWorkshopImage;
     Point volvoWorkshopPoint = new Point(300,300);
 
+
     // TODO: Make this general for all cars
     void moveit(Vehicle carName, int x, int y){
         switch (carName) {
@@ -42,6 +43,7 @@ public class DrawPanel extends JPanel{
             default -> throw new IllegalStateException("Unexpected value: " + carName);
         }
     }
+
 
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y) {

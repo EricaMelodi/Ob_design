@@ -1,6 +1,7 @@
 package cook;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -32,14 +33,17 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
+        Garage<Volvo240> volvoWorkShop = new Garage<>(3);
+        volvoWorkShop.setPosition(300, 300);
+
         Volvo240 volvo = new Volvo240();
-        volvo.setPosition(100, 0);
+        volvo.setPosition(300, 0);
 
         Saab95 saab95 = new Saab95();
         saab95.setPosition(200, 0);
 
         Scania scania = new Scania();
-        scania.setPosition(300,0);
+        scania.setPosition(100, 0);
 
         cc.cars.add(volvo);
         cc.cars.add(saab95);
