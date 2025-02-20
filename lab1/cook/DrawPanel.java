@@ -58,10 +58,10 @@ public class DrawPanel extends JPanel{
             // if you are starting in IntelliJ.
 
             ClassLoader classLoader = getClass().getClassLoader();
-            volvoImage = ImageIO.read(classLoader.getResourceAsStream("pics/Sally(1).png"));
+            volvoImage = ImageIO.read(classLoader.getResourceAsStream("pics/Volvo240.jpg"));
             volvoWorkshopImage = ImageIO.read(classLoader.getResourceAsStream("pics/VolvoBrand.jpg"));
-            saabImage = ImageIO.read(classLoader.getResourceAsStream("pics/mcqueen(1).png"));
-            scaniaImage = ImageIO.read(classLoader.getResourceAsStream("pics/Mater.png"));
+            saabImage = ImageIO.read(classLoader.getResourceAsStream("pics/Saab95.jpg"));
+            scaniaImage = ImageIO.read(classLoader.getResourceAsStream("pics/Scania.jpg"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
