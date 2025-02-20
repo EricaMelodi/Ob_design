@@ -52,8 +52,8 @@ import java.awt.Color;
             switch (direction){
                 case NORTH -> y += currentSpeed;
                 case SOUTH -> y-= currentSpeed;
-                case EAST  -> x -= currentSpeed;
-                case WEST  -> x += currentSpeed;
+                case EAST  -> x += currentSpeed;
+                case WEST  -> x -= currentSpeed;
             }
         }
 

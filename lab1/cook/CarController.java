@@ -54,15 +54,14 @@ public class CarController {
 
                 if (x >= 495 || x < 0 || y >= 495 || y < 0) {
                     car.stopEngine();
-                    stopped = true;
-                    frame.drawPanel.moveit(-x, -y);
+
+                    car.turnLeft();
+                    car.turnLeft();
+
+                    car.startEngine();
                 }
 
-                if (x >= 0 || x < 495 || y >= 0 || y < 495) {
-                    car.turnLeft();
-                    car.turnLeft();
-                    frame.drawPanel.moveit(x, y);
-                }
+                frame.drawPanel.moveit(x, y);
 
                 // repaint() calls the paintComponent method of the panel
 
