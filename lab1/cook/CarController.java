@@ -163,6 +163,7 @@ public class CarController {
                 Point workshopPos = volvoWorkShop.getPosition();
                 System.out.printf("Car is at %s, workshop is at %s\r", carPos, workshopPos);
                 if (carPos.equals(workshopPos)) {
+                    if (carPos.getX() >= 200 && carPos.getX() <= 300)
                     volvoWorkShop.takeInCar(volvo);
                     toRemove.add(volvo);
                 }
