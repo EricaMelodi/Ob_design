@@ -75,14 +75,12 @@ public class CarController {
                 int y = (int) Math.round(car.getY());
 
                 if (x >= 700 || x < 0 || y >= 700 || y < 0) {
-                    car.stopEngine();
 
                     car.turnLeft();
                     car.turnLeft();
 
-                    car.setPosition(Math.max(0, Math.min(699, car.getX())), Math.max(0, Math.min(699, car.getY())));
+             //       car.setPosition(Math.max(0, Math.min(699, car.getX())), Math.max(0, Math.min(699, car.getY())));
 
-                    car.startEngine();
 
                 }
 
@@ -130,7 +128,7 @@ public class CarController {
     void raisePlatform() {
         for (Vehicle car : cars) {
             if (car instanceof Scania) {
-                ((Scania) car).raisePlatform(((Scania) car).getPlatformAngle());
+                ((Scania) car).raisePlatform(70);
             }
         }
     }
@@ -138,7 +136,7 @@ public class CarController {
     void lowerPlatform() {
         for (Vehicle car : cars) {
             if (car instanceof Scania) {
-                ((Scania) car).lowerPlatform(((Scania) car).getPlatformAngle());
+                ((Scania) car).lowerPlatform(70);
             }
         }
     }
@@ -155,6 +153,7 @@ public class CarController {
         }
     }
 
+
     void collision() {
         ArrayList<Vehicle> toRemove = new ArrayList<>();
         for (Vehicle car : cars) {
@@ -162,7 +161,8 @@ public class CarController {
                 Point carPos = car.getPosition();
                 Point workshopPos = volvoWorkShop.getPosition();
                 System.out.printf("Car is at %s, workshop is at %s\r", carPos, workshopPos);
-                if (workshopPos.x <= carPos.x && carPos.x < (workshopPos.x + 300) && workshopPos.y <= carPos.y && carPos.y < (workshopPos.y + 300)) {
+                if (carPos.x > 300 && carPos.x <= 350 && carPos.y >= 300 && carPos.y <= 400) {
+                    volvo.setPosition(300, volvo.getY());
                     volvoWorkShop.takeInCar(volvo);
                     toRemove.add(volvo);
                 }
@@ -171,3 +171,7 @@ public class CarController {
         cars.removeAll(toRemove);
     }
 }
+
+
+
+
