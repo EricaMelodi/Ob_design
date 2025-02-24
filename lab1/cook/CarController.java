@@ -46,7 +46,7 @@ public class CarController {
 
         Saab95 saab95 = new Saab95();
         saab95.turnRight();
-        saab95.setPosition(0, 200);
+        saab95.setPosition(-14, 200);
 
         Scania scania = new Scania();
         scania.turnRight();
