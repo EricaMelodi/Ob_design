@@ -46,7 +46,7 @@ public class CarController {
 
         Saab95 saab95 = new Saab95();
         saab95.turnRight();
-        saab95.setPosition(-14, 200);
+        saab95.setPosition(0, 200);
 
         Scania scania = new Scania();
         scania.turnRight();
@@ -78,10 +78,6 @@ public class CarController {
 
                     car.turnLeft();
                     car.turnLeft();
-
-             //       car.setPosition(Math.max(0, Math.min(699, car.getX())), Math.max(0, Math.min(699, car.getY())));
-
-
                 }
 
                 frame.drawPanel.moveit(car, x, y);
@@ -127,16 +123,16 @@ public class CarController {
 
     void raisePlatform() {
         for (Vehicle car : cars) {
-            if (car instanceof Scania) {
-                ((Scania) car).raisePlatform(70);
+            if (car instanceof IHasPlatform c) {
+                c.raisePlatform(70);
             }
         }
     }
 
     void lowerPlatform() {
         for (Vehicle car : cars) {
-            if (car instanceof Scania) {
-                ((Scania) car).lowerPlatform(70);
+            if (car instanceof Scania scania) {
+                scania.lowerPlatform(70);
             }
         }
     }

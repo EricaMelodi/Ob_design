@@ -60,8 +60,7 @@ public class Scania extends Vehicle implements IHasPlatform {
         if (platformAngle == 0) {
             super.move();
         }
-//         else {
-//            throw new IllegalStateException("Cannot start engine while platform is up!");
-//        }
     }
+
+    
 }
