@@ -33,6 +33,7 @@ public class Application {
                 cc.cars.add(scania);
 
                 cc.frame = new CarView("CarSim 1.0", cc);
+                cc.frame.drawPanel.setCars(cc.cars);
 
                 System.out.println("Timer starting...");
                 cc.timer.start();  // Anropa ny metod som startar timern

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.imageio.ImageIO;
@@ -14,8 +15,9 @@ import TheOG.*;
 
 public class DrawPanel extends JPanel{
 
-    private List<Vehicle> vehicles = new ArrayList<Vehicle>();
-    private List<Point> position = new ArrayList<>();
+
+    private Map<Vehicle,BufferedImage> map = new HashMap<>();
+    private Map<Vehicle,Point> mapPoint = new HashMap<>();
 
 
     // Just a single image, TODO: Generalize
@@ -33,23 +35,10 @@ public class DrawPanel extends JPanel{
 
 
     // TODO: Make this general for all cars
-    void moveit(Vehicle carName, int x, int y){
-        switch (carName) {
-            case Volvo240 ignored -> {
-                volvoPoint.x = x;
-                volvoPoint.y = y;
-            }
-            case Saab95 ignored -> {
-                saabPoint.x = x;
-                saabPoint.y = y;
-            }
-            case Scania ignored -> {
-                scaniaPoint.x = x;
-                scaniaPoint.y = y;
-            }
-            default -> throw new IllegalStateException("Unexpected value: " + carName);
+    void moveit(Vehicle car){
+        mapPoint.put(car, new Point((int) car.getX(), (int) car.getY()));
         }
-    }
+
 
 
     // Initializes the panel and reads the images
@@ -57,21 +46,20 @@ public class DrawPanel extends JPanel{
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.pink);
-        // Print an error message in case file is not found with a try/catch block
+
         try {
-            // You can remove the "pics" part if running outside of IntelliJ and
-            // everything is in the same main folder.
-            // volvoImage = ImageIO.read(new File("Volvo240.jpg"));
-
-            // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
-            // if you are starting in IntelliJ.
-
             ClassLoader classLoader = getClass().getClassLoader();
             volvoImage = ImageIO.read(classLoader.getResourceAsStream("pics/OOPSally.png"));
-            volvoWorkshopImage = ImageIO.read(classLoader.getResourceAsStream("pics/VolvoBrand.jpg"));
             saabImage = ImageIO.read(classLoader.getResourceAsStream("pics/mcqueen1.png"));
             scaniaImage = ImageIO.read(classLoader.getResourceAsStream("pics/Mater.png"));
             streetsImage = ImageIO.read(classLoader.getResourceAsStream("pics/Streets.png"));
+            volvoWorkshopImage = ImageIO.read(classLoader.getResourceAsStream("pics/VolvoBrand.jpg"));
+
+            // Lägg till bilder i map
+            map.put(new Volvo240(), volvoImage);
+            map.put(new Saab95(), saabImage);
+            map.put(new Scania(), scaniaImage);
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -83,11 +71,41 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(streetsImage, 0, 0, null);
-        g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
-        g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
-        g.drawImage(saabImage, saabPoint.x, saabPoint.y, null);
-        g.drawImage(scaniaImage, scaniaPoint.x, scaniaPoint.y, null);
 
+        g.drawImage(streetsImage, 0, 0, null);
+
+        for (Map.Entry<Vehicle, BufferedImage> entry : map.entrySet()) {
+            Vehicle car = entry.getKey();
+            BufferedImage image = entry.getValue();
+            Point position = mapPoint.get(car);
+
+            if (position != null) {
+                g.drawImage(image, position.x, position.y, null);
+            }
+        }
+
+        g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
     }
+
+    public void setCars(List<Vehicle> cars) {
+        for (Vehicle car : cars) {
+            mapPoint.put(car, new Point((int) car.getX(), (int) car.getY()));
+            map.put(car, getCarImage(car));
+        }
+    }
+
+    // Hjälpmetod för att hämta rätt bild
+    private BufferedImage getCarImage(Vehicle car) {
+        if (car instanceof Volvo240) return volvoImage;
+        if (car instanceof Saab95) return saabImage;
+        if (car instanceof Scania) return scaniaImage;
+        return null;
+    }
+
+
+
+
+
+
+
 }

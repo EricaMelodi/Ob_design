@@ -29,7 +29,6 @@ public class CarController {
     ArrayList<Vehicle> cars = new ArrayList<>();
     Garage<Volvo240> volvoWorkShop;
 
-
     //methods:
 
     /* Each step the TimerListener moves all the cars in the list and tells the
@@ -49,11 +48,12 @@ public class CarController {
                     car.turnLeft();
                 }
 
-                frame.drawPanel.moveit(car, x, y);
+                frame.drawPanel.moveit(car);
 
                 // repaint() calls the paintComponent method of the panel
 
                 frame.drawPanel.repaint();
+
             }
             collision();
         }
