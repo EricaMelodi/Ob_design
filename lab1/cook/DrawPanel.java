@@ -2,8 +2,10 @@ package cook;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import TheOG.*;
@@ -11,6 +13,10 @@ import TheOG.*;
 // This panel represents the animated part of the view with the car images.
 
 public class DrawPanel extends JPanel{
+
+    private List<Vehicle> vehicles = new ArrayList<Vehicle>();
+    private List<Point> position = new ArrayList<>();
+
 
     // Just a single image, TODO: Generalize
     BufferedImage volvoImage;
