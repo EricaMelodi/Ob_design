@@ -15,20 +15,14 @@ import TheOG.*;
 
 public class DrawPanel extends JPanel{
 
-
     private Map<Vehicle,BufferedImage> map = new HashMap<>();
     private Map<Vehicle,Point> mapPoint = new HashMap<>();
-
 
     // Just a single image, TODO: Generalize
     BufferedImage volvoImage;
     BufferedImage saabImage;
     BufferedImage scaniaImage;
     BufferedImage streetsImage;
-    // To keep track of a single car's position
-    Point volvoPoint = new Point(0, 0);
-    Point saabPoint = new Point(0, 100);
-    Point scaniaPoint = new Point(0, 200);
 
     BufferedImage volvoWorkshopImage;
     Point volvoWorkshopPoint = new Point(300,300);
@@ -39,10 +33,7 @@ public class DrawPanel extends JPanel{
         mapPoint.put(car, new Point((int) car.getX(), (int) car.getY()));
         }
 
-
-
-    // Initializes the panel and reads the images
-    public DrawPanel(int x, int y) {
+        public DrawPanel(int x, int y) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.pink);

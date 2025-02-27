@@ -31,6 +31,61 @@ public class CarController {
 
     //methods:
 
+    CarController(CarView v) {
+        this.frame = v;
+        v.gasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gas(v.gasAmount);
+            }
+        });
+        v.brakeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                brake(v.gasAmount);
+            }
+        });
+        v.turboOnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                turboOn();
+            }
+        });
+        v.turboOffButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                turboOff();
+            }
+        });
+        v.liftBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                raisePlatform();
+            }
+        });
+        v.lowerBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lowerPlatform();
+            }
+        });
+        v.startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startEngine();
+            }
+        });
+        v.stopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stopEngine();
+            }
+        });
+
+
+    }
+
+
     /* Each step the TimerListener moves all the cars in the list and tells the
      * view to update its images. Change this method to your needs.
      * */
@@ -43,17 +98,12 @@ public class CarController {
                 int y = (int) Math.round(car.getY());
 
                 if (x >= 700 || x < 0 || y >= 700 || y < 0) {
-
                     car.turnLeft();
                     car.turnLeft();
                 }
 
                 frame.drawPanel.moveit(car);
-
-                // repaint() calls the paintComponent method of the panel
-
                 frame.drawPanel.repaint();
-
             }
             collision();
         }

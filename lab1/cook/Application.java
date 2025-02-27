@@ -1,20 +1,15 @@
 package cook;
-
 import TheOG.*;
-
 import javax.swing.*;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
 
 public class Application {
 
         public static void main(String[] args) {
             SwingUtilities.invokeLater(() -> {
-                CarController cc = new CarController();
+                CarController v = new CarController(new CarView("CarSim 1.0"));
                 Garage<Volvo240> volvoWorkShop = new Garage<>(3);
                 volvoWorkShop.setPosition(300, 300);
-                cc.volvoWorkShop = volvoWorkShop;
+                v.volvoWorkShop = volvoWorkShop;
 
                 Volvo240 volvo = new Volvo240();
                 volvo.turnRight();
@@ -28,15 +23,14 @@ public class Application {
                 scania.turnRight();
                 scania.setPosition(0, 100);
 
-                cc.cars.add(volvo);
-                cc.cars.add(saab95);
-                cc.cars.add(scania);
+                v.cars.add(volvo);
+                v.cars.add(saab95);
+                v.cars.add(scania);
 
-                cc.frame = new CarView("CarSim 1.0", cc);
-                cc.frame.drawPanel.setCars(cc.cars);
+                v.frame.drawPanel.setCars(v.cars);
 
                 System.out.println("Timer starting...");
-                cc.timer.start();  // Anropa ny metod som startar timern
+                v.timer.start();  // Anropa ny metod som startar timern
             });
         }
     }
