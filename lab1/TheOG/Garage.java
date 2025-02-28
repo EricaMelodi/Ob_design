@@ -8,11 +8,15 @@ public class Garage<T extends Vehicle> {
      private ArrayList<T> carsInGarage;
      int x;
      int y;
+     int size;
 
 
-    public Garage(int MAX_CARS){
+    public Garage(int MAX_CARS, int x, int y){
         this.MAX_CARS = MAX_CARS;
         this.carsInGarage = new ArrayList<>();
+        this.size = 300;
+        this.x = x;
+        this.y = y;
     }
 
     public int getX() {
@@ -22,18 +26,6 @@ public class Garage<T extends Vehicle> {
     public int getY() {
         return y;
     }
-
-    public void setPosition(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public Point getPosition(){
-        return new Point(getX(), getY());
-    }
-
-
-
 
     public void takeInCar(T car){
        if (carsInGarage.size() < MAX_CARS){

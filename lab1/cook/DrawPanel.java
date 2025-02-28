@@ -40,10 +40,9 @@ public class DrawPanel extends JPanel{
 
         try {
             ClassLoader classLoader = getClass().getClassLoader();
-            volvoImage = ImageIO.read(classLoader.getResourceAsStream("pics/OOPSally.png"));
-            saabImage = ImageIO.read(classLoader.getResourceAsStream("pics/mcqueen1.png"));
-            scaniaImage = ImageIO.read(classLoader.getResourceAsStream("pics/Mater.png"));
-            streetsImage = ImageIO.read(classLoader.getResourceAsStream("pics/Streets.png"));
+            volvoImage = ImageIO.read(classLoader.getResourceAsStream("pics/Volvo240.jpg"));
+            saabImage = ImageIO.read(classLoader.getResourceAsStream("pics/Saab95.jpg"));
+            scaniaImage = ImageIO.read(classLoader.getResourceAsStream("pics/Scania.jpg"));
             volvoWorkshopImage = ImageIO.read(classLoader.getResourceAsStream("pics/VolvoBrand.jpg"));
 
             // Lägg till bilder i map
@@ -85,7 +84,6 @@ public class DrawPanel extends JPanel{
         }
     }
 
-    // Hjälpmetod för att hämta rätt bild
     private BufferedImage getCarImage(Vehicle car) {
         if (car instanceof Volvo240) return volvoImage;
         if (car instanceof Saab95) return saabImage;
