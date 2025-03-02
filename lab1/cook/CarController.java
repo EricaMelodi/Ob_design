@@ -31,8 +31,9 @@ public class CarController {
 
     //methods:
 
-    public CarController(CarView v) {
+    public CarController(CarView v, Garage<Volvo240> volvoWorkShop) {
         this.frame = v;
+        this.volvoWorkShop = volvoWorkShop;
         v.gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -102,7 +103,6 @@ public class CarController {
                     car.turnLeft();
                     car.turnLeft();
                 }
-
                 frame.drawPanel.moveit(car);
                 frame.drawPanel.repaint();
 
@@ -116,74 +116,70 @@ public class CarController {
         }
     }
 
-        void gas(int amount) {
-            double gas = ((double) amount) / 100;
-            for (Vehicle car : cars) {
-                car.gas(gas);
-            }
-        }
-
-        void brake(double amount) {
-            double brakeAmount = amount / 100;
-            for (Vehicle car : cars) {
-                car.brake(brakeAmount);
-            }
-        }
-
-        void turboOn() {
-            for (Vehicle car : cars) {
-                if (car instanceof Saab95) {
-                    ((Saab95) car).setTurboOn();
-                }
-            }
-        }
-
-        void turboOff() {
-            for (Vehicle car : cars) {
-                if (car instanceof Saab95) {
-                    ((Saab95) car).setTurboOff();
-                }
-            }
-        }
-
-        void raisePlatform() {
-            for (Vehicle car : cars) {
-                if (car instanceof IHasPlatform c) {
-                    c.raisePlatform(70);
-                }
-            }
-        }
-
-        void lowerPlatform() {
-            for (Vehicle car : cars) {
-                if (car instanceof Scania scania) {
-                    scania.lowerPlatform(70);
-                }
-            }
-        }
-
-        void startEngine() {
-            for (Vehicle car : cars) {
-                car.startEngine();
-            }
-        }
-
-        void stopEngine() {
-            for (Vehicle car : cars) {
-                car.stopEngine();
-            }
-        }
-
-        public void addCar(Vehicle modelName, double x, double y) {
-        modelName.turnRight();
-        modelName.setPosition(x, y);
-        cars.add(modelName);
-        }
-
-        public void addWorkShop(Garage<Vehicle> g, double x, double y) {
+    void gas(int amount) {
+        double gas = ((double) amount) / 100;
+        for (Vehicle car : cars) {
+            car.gas(gas);
         }
     }
 
+    void brake(double amount) {
+        double brakeAmount = amount / 100;
+        for (Vehicle car : cars) {
+            car.brake(brakeAmount);
+        }
+    }
+
+    void turboOn() {
+        for (Vehicle car : cars) {
+            if (car instanceof Saab95) {
+                ((Saab95) car).setTurboOn();
+            }
+        }
+    }
+
+    void turboOff() {
+        for (Vehicle car : cars) {
+            if (car instanceof Saab95) {
+                ((Saab95) car).setTurboOff();
+            }
+        }
+    }
+
+    void raisePlatform() {
+        for (Vehicle car : cars) {
+            if (car instanceof IHasPlatform c) {
+                c.raisePlatform(70);
+            }
+        }
+    }
+
+    void lowerPlatform() {
+        for (Vehicle car : cars) {
+            if (car instanceof Scania scania) {
+                scania.lowerPlatform(70);
+            }
+        }
+    }
+
+    void startEngine() {
+        for (Vehicle car : cars) {
+            car.startEngine();
+        }
+    }
+
+    void stopEngine() {
+        for (Vehicle car : cars) {
+            car.stopEngine();
+        }
+    }
+
+    public void addCar(Vehicle modelName, double x, double y) {
+        modelName.turnRight();
+        modelName.setPosition(x, y);
+        cars.add(modelName);
+    }
+}
 
 
 

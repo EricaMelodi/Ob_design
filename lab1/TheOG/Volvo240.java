@@ -19,8 +19,8 @@ public class Volvo240 extends Vehicle {
 
     @Override
     public boolean collision(Garage o) {
-        boolean withinX = o.getX() <= this.getX() && this.getX() <= o.getX() + o.size;
-        boolean withinY = o.getY() <= this.getY() && this.getY() <= o.getY() + o.size;
+        boolean withinX = o.getX() <= this.getX() && this.getX() <= o.getX() + o.getSize();
+        boolean withinY = o.getY() <= this.getY() && this.getY() <= o.getY() + o.getSize();
         return withinX && withinY;
     }
 }

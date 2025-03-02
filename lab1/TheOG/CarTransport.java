@@ -4,14 +4,14 @@ import java.awt.*;
 import java.util.Stack;
 
 public class CarTransport extends Vehicle implements IHasContainer {
-    private final Stack<Vehicle> loadedCars;
+    private final Container<Vehicle> loadedCars;
     public final int MAX_CARS = 10;
     public final int MAX_WEIGHT_CAR = 2000;
     private boolean isPlatformOpen = false;
 
     public CarTransport() {
         super(2, Color.red, 85, "CarTransport");
-        this.loadedCars = new Stack<>();
+        this.loadedCars = new Container<>(MAX_CARS);
     }
 
     public void openPlatform() {
@@ -43,13 +43,13 @@ public class CarTransport extends Vehicle implements IHasContainer {
         if (weight > MAX_WEIGHT_CAR) {
             throw new IllegalArgumentException("Car is too heavy");
         }
-        if (loadedCars.size() >= MAX_CARS) {
+        if (loadedCars.isFull()) {
             throw new IllegalArgumentException("Truck is full");
         }
         if (!isNear(car)) {
             throw new IllegalArgumentException("Car is too far away to be loaded");
         }
-        loadedCars.push(car);
+        loadedCars.addItem(car);
         posWhileCarInTransport();
         }
 
@@ -64,16 +64,17 @@ public class CarTransport extends Vehicle implements IHasContainer {
         if (loadedCars.isEmpty()) {
             throw new IllegalArgumentException("No cars left to unload");
         }
-        loadedCars.pop();
+        loadedCars.removeItem(loadedCars.getItems().get(loadedCars.getItemCount() - 1));
     }
 
     public void posWhileCarInTransport() {
-        for (Vehicle car : loadedCars) {
+        for (Vehicle car : loadedCars.getItems()) {
             car.setDirection(getDirection());
             car.setPosition(getX(), getY());
         }
     }
 
+    @Override
     protected double speedFactor() {
         return 0;
     }
@@ -83,7 +84,6 @@ public class CarTransport extends Vehicle implements IHasContainer {
         super.move();
         posWhileCarInTransport();
     }
-
 }
 
 
