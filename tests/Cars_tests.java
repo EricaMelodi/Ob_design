@@ -1,5 +1,9 @@
 
 
+import TheOG.Directions.EastDirection;
+import TheOG.Directions.NorthDirection;
+import TheOG.Directions.SouthDirection;
+import TheOG.Directions.WestDirection;
 import org.junit.jupiter.api.Test;
 import TheOG.*;
 
@@ -14,6 +18,7 @@ public class Cars_tests {
     public void testMoveUp() {
         Volvo240 car = new Volvo240();
         car.startEngine();
+        car.setDirection(new NorthDirection());
         car.move();
         assertTrue(car.getY() > 0, "Car should have moved up");
     }
@@ -50,7 +55,7 @@ public class Cars_tests {
         Volvo240 car = new Volvo240();
         car.startEngine();
         car.turnLeft();
-        assertEquals(Vehicle.Coordinates.WEST, car.getDirection(), "Car should have moved left.");
+        assertTrue(car.getDirection() instanceof NorthDirection, "Car should have turned to West");
     }
 
     @Test
@@ -58,7 +63,7 @@ public class Cars_tests {
         Saab95 car = new Saab95();
         car.startEngine();
         car.turnRight();
-        assertEquals(Vehicle.Coordinates.EAST, car.getDirection(), "Car should have moved right.");
+        assertTrue(car.getDirection() instanceof SouthDirection, "Car should have moved right.");
     }
 
 

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import TheOG.*;
+import TheOG.Directions.EastDirection;
 
 /*
  * This class represents the Controller part in the MVC pattern.
@@ -197,7 +198,7 @@ public class CarController {
             double y = Math.random() * 500;
             newCar.setPosition(x, y);
 
-            newCar.setDirection(Vehicle.Coordinates.EAST);
+            newCar.setDirection(new EastDirection());
 
             cars.add(newCar);
         }
