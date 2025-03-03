@@ -40,10 +40,13 @@ public class DrawPanel extends JPanel{
 
         try {
             ClassLoader classLoader = getClass().getClassLoader();
-            volvoImage = ImageIO.read(classLoader.getResourceAsStream("pics/Volvo240.jpg"));
-            saabImage = ImageIO.read(classLoader.getResourceAsStream("pics/Saab95.jpg"));
-            scaniaImage = ImageIO.read(classLoader.getResourceAsStream("pics/Scania.jpg"));
+            volvoImage = ImageIO.read(classLoader.getResourceAsStream("pics/OOPSally.png"));
+            saabImage = ImageIO.read(classLoader.getResourceAsStream("pics/mcqueen1.png"));
+            scaniaImage = ImageIO.read(classLoader.getResourceAsStream("pics/Mater.png"));
             volvoWorkshopImage = ImageIO.read(classLoader.getResourceAsStream("pics/VolvoBrand.jpg"));
+            streetsImage = ImageIO.read(classLoader.getResourceAsStream("pics/Streets.png"));
+
+
 
             // Lägg till bilder i map
             map.put(new Volvo240(), volvoImage);

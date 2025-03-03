@@ -2,7 +2,7 @@ package TheOG;
 
 public interface ICollision {
 
-    default boolean collision(Garage g) {
+    default boolean collision(Garage<?> g) {
         return false;
     }
 
