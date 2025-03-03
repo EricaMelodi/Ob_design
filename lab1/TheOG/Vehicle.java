@@ -2,6 +2,8 @@ package TheOG;
 
 import java.awt.*;
 import java.util.ArrayList;
+import TheOG.Directions.Direction;
+import TheOG.Directions.EastDirection;
 import cook.*;
 
 
@@ -21,16 +23,13 @@ public abstract class Vehicle implements IMovable, ICollision {
         stopEngine();
     }
 
-    public enum Coordinates {NORTH, SOUTH, WEST, EAST}
+    private Direction direction = new EastDirection();
 
-    private Coordinates direction = Coordinates.NORTH;
-
-
-    public Coordinates getDirection() {
+    public Direction getDirection() {
         return direction;
     }
 
-    public void setDirection(Coordinates direction) {
+    public void setDirection(Direction direction) {
         this.direction = direction;
     }
 
@@ -52,32 +51,17 @@ public abstract class Vehicle implements IMovable, ICollision {
 
     @Override
     public void move() {
-        switch (direction) {
-            case NORTH -> y += currentSpeed;
-            case SOUTH -> y -= currentSpeed;
-            case EAST -> x += currentSpeed;
-            case WEST -> x -= currentSpeed;
-        }
+        direction.move(this);
     }
 
     @Override
     public void turnLeft() {
-        switch (direction) {
-            case NORTH -> direction = Coordinates.WEST;
-            case SOUTH -> direction = Coordinates.EAST;
-            case EAST -> direction = Coordinates.NORTH;
-            case WEST -> direction = Coordinates.SOUTH;
-        }
+        direction = direction.turnLeft();
     }
 
     @Override
     public void turnRight() {
-        switch (direction) {
-            case NORTH -> direction = Coordinates.EAST;
-            case SOUTH -> direction = Coordinates.WEST;
-            case EAST -> direction = Coordinates.SOUTH;
-            case WEST -> direction = Coordinates.NORTH;
-        }
+        direction = direction.turnRight();
     }
 
     public int getNrDoors() {

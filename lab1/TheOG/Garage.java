@@ -24,9 +24,6 @@ public class Garage<T extends Vehicle> {
     public void takeOutCar(T car) {
         container.removeItem(car);
     }
-    public ArrayList<T> getCarsInGarage() {
-        return container.getItems();
-    }
 
     public int getX() {
         return x;
