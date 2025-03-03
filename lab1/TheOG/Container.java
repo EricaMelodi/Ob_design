@@ -37,10 +37,6 @@ public class Container<T> {
         return items;
     }
 
-    public int getMaxCapacity() {
-        return MAX_CAPACITY;
-    }
-
     public int getItemCount() {
         return items.size();
     }

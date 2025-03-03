@@ -9,9 +9,9 @@ public class Application {
         public static void main(String[] args) {
                 CarController v = new CarController(new CarView("CarSim 1.0"), new Garage<>(5, 300, 300));
 
-                v.addCar(new Volvo240(), 0, 300);
-                v.addCar(new Saab95(), 0 , 200);
-                v.addCar(new Scania(), 0 , 100);
+                v.addCar("random");
+                v.addCar("random");
+                v.addCar("random");
 
                 v.frame.drawPanel.setCars(v.cars);
 

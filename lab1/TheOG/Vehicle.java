@@ -50,10 +50,6 @@ public abstract class Vehicle implements IMovable, ICollision {
         this.y = y;
     }
 
-    public Point getPosition() {
-        return new Point((int) getX(), (int) getY());
-    }
-
     @Override
     public void move() {
         switch (direction) {
@@ -73,7 +69,6 @@ public abstract class Vehicle implements IMovable, ICollision {
             case WEST -> direction = Coordinates.SOUTH;
         }
     }
-    // Hur lösa detta?
 
     @Override
     public void turnRight() {

@@ -34,6 +34,7 @@ public class CarController {
     public CarController(CarView v, Garage<Volvo240> volvoWorkShop) {
         this.frame = v;
         this.volvoWorkShop = volvoWorkShop;
+
         v.gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -82,13 +83,20 @@ public class CarController {
                 stopEngine();
             }
         });
+        v.addCarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addCar("random");
+            }
+        });
+        v.removeCarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                removeCar();
+            }
+        });
 
     }
-
-
-    /* Each step the TimerListener moves all the cars in the list and tells the
-     * view to update its images. Change this method to your needs.
-     * */
 
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
@@ -174,10 +182,34 @@ public class CarController {
         }
     }
 
-    public void addCar(Vehicle modelName, double x, double y) {
-        modelName.turnRight();
-        modelName.setPosition(x, y);
-        cars.add(modelName);
+    public void addCar(String modelName) {
+        if (cars.size() < 10) {
+            VehicleFactory vehicleFactory = new VehicleFactory();
+
+            if (modelName.equals("random")) {
+                String[] models = {"Volvo240", "Saab95", "Scania"};
+                modelName = models[(int) (Math.random() * models.length)];
+            }
+
+            Vehicle newCar = vehicleFactory.createVehicle(modelName);
+
+            double x = Math.random() * 100;
+            double y = Math.random() * 500;
+            newCar.setPosition(x, y);
+
+            newCar.setDirection(Vehicle.Coordinates.EAST);
+
+            cars.add(newCar);
+        }
+    }
+
+
+    public void removeCar() {
+        if (cars.size() > 0) {
+
+            Vehicle carToRemove = cars.get((int) (Math.random() * cars.size()));
+            cars.remove(carToRemove);
+        }
     }
 }
 
