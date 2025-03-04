@@ -13,19 +13,19 @@ import TheOG.Directions.EastDirection;
 public class CarController {
     private final int delay = 50;
     public CarView frame;
-    public ArrayList<Vehicle> cars = new ArrayList<>();
     public Garage<Volvo240> volvoWorkShop;
     public Timer timer;
-    private final VehicleFactory vehicleFactory;
+    public java.util.List<Vehicle> cars;
+    private ModelFacade modelFacade; 
 
     //methods:
 
-    public CarController(CarView v, Garage<Volvo240> volvoWorkShop) {
+    public CarController(CarView v, Garage<Volvo240> volvoWorkShop, ModelFacade modelFacade) {
         this.frame = v;
         this.volvoWorkShop = volvoWorkShop;
-        this.vehicleFactory = new VehicleFactory();
+        this.modelFacade = modelFacade;
 
-        Timer timer = new Timer(50, new CarTimerListener(cars, volvoWorkShop, frame));
+        this.timer = new Timer(50, new CarTimerListener(modelFacade.getCars(), volvoWorkShop, frame));
         timer.start();  // Startar timern här
 
 
@@ -93,100 +93,61 @@ public class CarController {
 
     }
 
-    public void startTimer() {
-        timer.start();  // Starta timern här
-    }
-
 
     void gas(int amount) {
-        double gas = ((double) amount) / 100;
-        for (Vehicle car : cars) {
-            car.gas(gas);
-        }
+        modelFacade.gas(amount);
     }
 
     void brake(double amount) {
         double brakeAmount = amount / 100;
-        for (Vehicle car : cars) {
-            car.brake(brakeAmount);
-        }
+        modelFacade.brake(brakeAmount);
     }
 
     void turboOn() {
-        for (Vehicle car : cars) {
-            if (car instanceof Saab95) {
-                ((Saab95) car).setTurboOn();
-            }
-        }
+        modelFacade.turboOn();
     }
 
     void turboOff() {
-        for (Vehicle car : cars) {
-            if (car instanceof Saab95) {
-                ((Saab95) car).setTurboOff();
-            }
-        }
+      modelFacade.turboOff();
     }
 
     void raisePlatform() {
-        for (Vehicle car : cars) {
-            if (car instanceof IHasPlatform c) {
-                c.raisePlatform(70);
-            }
-        }
+     modelFacade.raisePlatform();
     }
 
     void lowerPlatform() {
-        for (Vehicle car : cars) {
-            if (car instanceof Scania scania) {
-                scania.lowerPlatform(70);
-            }
-        }
+        modelFacade.lowerPlatform();
     }
 
     void startEngine() {
-        for (Vehicle car : cars) {
-            car.startEngine();
-        }
+       modelFacade.startEngine();
     }
 
     void stopEngine() {
-        for (Vehicle car : cars) {
-            car.stopEngine();
-        }
+        modelFacade.startEngine();
     }
-
 
     public void addCar(String modelName) {
-        if (cars.size() < 10) {
-            if (modelName.equals("random")) {
-                modelName = vehicleFactory.getAvailableModels().get((int) (Math.random() * vehicleFactory.getAvailableModels().size()));
-            }
-
-            Vehicle newCar = vehicleFactory.createVehicle(modelName);
-
-            double x = Math.random() * 100;
-            double y = Math.random() * 500;
-            newCar.setPosition(x, y);
-
-            newCar.setDirection(new EastDirection());
-
-            cars.add(newCar);
-            newCar.addObserver(frame);
-
-            frame.drawPanel.setCars(cars);
-            frame.drawPanel.repaint();
-        }
+        modelFacade.addCar(modelName);  // Add car to model
+        frame.drawPanel.setCars(modelFacade.getCars());  // Update view
+        frame.drawPanel.repaint();
     }
+
 
     public void removeCar() {
+        ArrayList<Vehicle> cars = modelFacade.getCars();
+
         if (!cars.isEmpty()) {
             Vehicle carToRemove = cars.get((int) (Math.random() * cars.size()));
-            carToRemove.removeObserver(frame);
-            cars.remove(carToRemove);
+            carToRemove.removeObserver(frame);  // Remove observer first
+            cars.remove(carToRemove);           // Then remove from list
 
-            frame.drawPanel.removeCarFromPanel(carToRemove);
-            frame.drawPanel.repaint();
+            frame.drawPanel.removeCarFromPanel(carToRemove);  // Update the view
+            frame.drawPanel.repaint();  // Repaint the panel
         }
     }
+
+
+
+
 }

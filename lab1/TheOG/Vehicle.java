@@ -144,6 +144,8 @@ public abstract class Vehicle implements IMovable, ICollision, Subject {
             observer.update();
         }
     }
+
+
 }
 
 
