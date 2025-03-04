@@ -3,7 +3,6 @@ package cook;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,84 +10,75 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import TheOG.*;
 
-// This panel represents the animated part of the view with the car images.
+// Panel som ritar bilar och bakgrund
+public class DrawPanel extends JPanel implements Observer {
 
-public class DrawPanel extends JPanel implements Observer{
+    private Map<Class<? extends Vehicle>, BufferedImage> carImages = new HashMap<>();
+    private Map<Vehicle, BufferedImage> carMap = new HashMap<>();
 
-    private Map<Vehicle,BufferedImage> map = new HashMap<>();
-    private Map<Vehicle,Point> mapPoint = new HashMap<>();
+    private BufferedImage streetsImage;
+    private BufferedImage volvoWorkshopImage;
+    private final Point volvoWorkshopPoint = new Point(300, 300);
 
-    // Just a single image, TODO: Generalize
-    BufferedImage volvoImage;
-    BufferedImage saabImage;
-    BufferedImage scaniaImage;
-    BufferedImage streetsImage;
-
-    BufferedImage volvoWorkshopImage;
-    Point volvoWorkshopPoint = new Point(300,300);
-
-
-    // TODO: Make this general for all cars
-    void moveit(Vehicle car){
-        mapPoint.put(car, new Point((int) car.getX(), (int) car.getY()));
-        }
-
-        public DrawPanel(int x, int y) {
+    public DrawPanel(int x, int y) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.pink);
+        loadImages();
+    }
 
+    // Laddar alla bilder
+    private void loadImages() {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
-            volvoImage = ImageIO.read(classLoader.getResourceAsStream("pics/OOPSally.png"));
-            saabImage = ImageIO.read(classLoader.getResourceAsStream("pics/mcqueen1.png"));
-            scaniaImage = ImageIO.read(classLoader.getResourceAsStream("pics/mater.png"));
+
+            // Laddar bilder och kopplar bilklasser till bilder
+            carImages.put(Volvo240.class, ImageIO.read(classLoader.getResourceAsStream("pics/OOPSally.png")));
+            carImages.put(Saab95.class, ImageIO.read(classLoader.getResourceAsStream("pics/mcqueen1.png")));
+            carImages.put(Scania.class, ImageIO.read(classLoader.getResourceAsStream("pics/mater.png")));
+
             streetsImage = ImageIO.read(classLoader.getResourceAsStream("pics/Streets.png"));
-
             volvoWorkshopImage = ImageIO.read(classLoader.getResourceAsStream("pics/VolvoBrand.jpg"));
-
-
 
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
     }
 
-    // This method is called each time the panel updates/refreshes/repaints itself
-    // TODO: Change to suit your needs.
+    // Kopplar bilar till deras bilder
+    public void setCars(List<Vehicle> cars) {
+        carMap.clear();
+        for (Vehicle car : cars) {
+            carMap.put(car, getCarImage(car));
+        }
+    }
+
+    // Hämtar rätt bild för en viss biltyp
+    private BufferedImage getCarImage(Vehicle car) {
+        return carImages.getOrDefault(car.getClass(), null);
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.drawImage(streetsImage, 0, 0, null);
+        // Rita bakgrunden
+        if (streetsImage != null) {
+            g.drawImage(streetsImage, 0, 0, null);
+        }
 
-        for (Map.Entry<Vehicle, BufferedImage> entry : map.entrySet()) {
-            Vehicle car = entry.getKey();
-            BufferedImage image = entry.getValue();
-            Point position = mapPoint.get(car);
-
-            if (position != null) {
-                g.drawImage(image, position.x, position.y, null);
+        // Rita bilar på sina positioner
+        for (Vehicle car : carMap.keySet()) {
+            BufferedImage image = getCarImage(car);
+            if (image != null) {
+                g.drawImage(image, (int) car.getX(), (int) car.getY(), null);
             }
         }
-// Behöver ej movit, kan använda getX,getY från mapPoint
 
-        g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
-    }
-
-    public void setCars(List<Vehicle> cars) {
-        for (Vehicle car : cars) {
-            mapPoint.put(car, new Point((int) car.getX(), (int) car.getY()));
-            map.put(car, getCarImage(car));
+        // Rita verkstaden
+        if (volvoWorkshopImage != null) {
+            g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
         }
-    }
-
-    private BufferedImage getCarImage(Vehicle car) {
-        if (car instanceof Volvo240) return volvoImage;
-        if (car instanceof Saab95) return saabImage;
-        if (car instanceof Scania) return scaniaImage;
-        return null;
     }
 
     @Override
@@ -96,8 +86,10 @@ public class DrawPanel extends JPanel implements Observer{
         repaint();
     }
 
-
-
+    public void removeCarFromPanel(Vehicle car) {
+        carMap.remove(car); // Tar bort bilen från kartan med bilder
+        repaint(); // Ritar om panelen utan bilen
+    }
 
 
 }

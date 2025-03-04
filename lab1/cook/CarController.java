@@ -116,7 +116,6 @@ public class CarController {
                     car.turnLeft();
                     car.turnLeft();
                 }
-                frame.drawPanel.moveit(car);
                 frame.drawPanel.repaint();
 
                 if (car.collision(volvoWorkShop)) {
@@ -205,17 +204,22 @@ public class CarController {
             newCar.setDirection(new EastDirection());
 
             cars.add(newCar);
-
             newCar.addObserver(frame);
+
+            frame.drawPanel.setCars(cars);
+            frame.drawPanel.repaint();
         }
     }
-
 
     public void removeCar() {
         if (!cars.isEmpty()) {
             Vehicle carToRemove = cars.get((int) (Math.random() * cars.size()));
             carToRemove.removeObserver(frame);
             cars.remove(carToRemove);
+
+            frame.drawPanel.removeCarFromPanel(carToRemove);
+            frame.drawPanel.repaint();
+
         }
     }
 }
