@@ -207,6 +207,9 @@ public class CarController {
             cars.add(newCar);
 
             newCar.addObserver(frame);
+
+            frame.drawPanel.setCars(cars);
+            frame.drawPanel.repaint();
         }
     }
 
@@ -216,6 +219,9 @@ public class CarController {
             Vehicle carToRemove = cars.get((int) (Math.random() * cars.size()));
             carToRemove.removeObserver(frame);
             cars.remove(carToRemove);
+
+            frame.drawPanel.removeCarFromPanel(carToRemove);
+            frame.drawPanel.repaint();
         }
     }
 }

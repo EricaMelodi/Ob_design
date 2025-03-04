@@ -40,14 +40,10 @@ public class DrawPanel extends JPanel implements Observer{
 
         try {
             ClassLoader classLoader = getClass().getClassLoader();
-            volvoImage = ImageIO.read(classLoader.getResourceAsStream("pics/OOPSally.png"));
-            saabImage = ImageIO.read(classLoader.getResourceAsStream("pics/mcqueen1.png"));
-            scaniaImage = ImageIO.read(classLoader.getResourceAsStream("pics/mater.png"));
-            streetsImage = ImageIO.read(classLoader.getResourceAsStream("pics/Streets.png"));
-
+            volvoImage = ImageIO.read(classLoader.getResourceAsStream("pics/Volvo240.jpg"));
+            saabImage = ImageIO.read(classLoader.getResourceAsStream("pics/Saab95.jpg"));
+            scaniaImage = ImageIO.read(classLoader.getResourceAsStream("pics/Scania.jpg"));
             volvoWorkshopImage = ImageIO.read(classLoader.getResourceAsStream("pics/VolvoBrand.jpg"));
-
-
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -97,9 +93,8 @@ public class DrawPanel extends JPanel implements Observer{
     }
 
 
-
-
-
-
-
+    public void removeCarFromPanel(Vehicle car) {
+        map.remove(car);
+        mapPoint.remove(car);
+    }
 }
