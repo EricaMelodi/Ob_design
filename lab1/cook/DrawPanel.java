@@ -89,7 +89,7 @@ public class DrawPanel extends JPanel implements Observer {
     public void removeCarFromPanel(Vehicle car) {
         carMap.remove(car); // Tar bort bilen från kartan med bilder
         repaint(); // Ritar om panelen utan bilen
-    }
+    }....
 
 
 }
