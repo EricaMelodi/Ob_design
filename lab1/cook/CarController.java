@@ -9,34 +9,25 @@ import java.util.ArrayList;
 import TheOG.*;
 import TheOG.Directions.EastDirection;
 
-/*
- * This class represents the Controller part in the MVC pattern.
- * It's responsibilities is to listen to the View and responds in a appropriate manner by
- * modifying the model state and the updating the view.
- */
 
 public class CarController {
-    // member fields:
-
-
-
-    // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
-    // The timer is started with a listener (see below) that executes the statements
-    // each step between delays.
-    public Timer timer = new Timer(delay, new TimerListener());
-
-    // The frame that represents this instance View of the MVC pattern
     public CarView frame;
-    // A list of cars, modify if needed
     public ArrayList<Vehicle> cars = new ArrayList<>();
     public Garage<Volvo240> volvoWorkShop;
+    public Timer timer;
+    private final VehicleFactory vehicleFactory;
 
     //methods:
 
     public CarController(CarView v, Garage<Volvo240> volvoWorkShop) {
         this.frame = v;
         this.volvoWorkShop = volvoWorkShop;
+        this.vehicleFactory = new VehicleFactory();
+
+        Timer timer = new Timer(50, new CarTimerListener(cars, volvoWorkShop, frame));
+        timer.start();  // Startar timern här
+
 
         v.gasButton.addActionListener(new ActionListener() {
             @Override
@@ -102,31 +93,10 @@ public class CarController {
 
     }
 
-    // Gör klass med workshop + observer lista + timerlistner
-    private class TimerListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            ArrayList<Vehicle> toRemove = new ArrayList<>();
-            for (Vehicle car : cars) {
-                car.move();
-
-                int x = (int) Math.round(car.getX());
-                int y = (int) Math.round(car.getY());
-
-                if (x >= 700 || x < 0 || y >= 700 || y < 0) {
-                    car.turnLeft();
-                    car.turnLeft();
-                }
-                frame.drawPanel.repaint();
-
-                if (car.collision(volvoWorkShop)) {
-                    toRemove.add(car);
-                }
-            }
-            for (Vehicle car : toRemove) {
-                cars.remove(car);
-            }
-        }
+    public void startTimer() {
+        timer.start();  // Starta timern här
     }
+
 
     void gas(int amount) {
         double gas = ((double) amount) / 100;
@@ -186,13 +156,11 @@ public class CarController {
         }
     }
 
+
     public void addCar(String modelName) {
         if (cars.size() < 10) {
-            VehicleFactory vehicleFactory = new VehicleFactory();
-
             if (modelName.equals("random")) {
-                String[] models = {"Volvo240", "Saab95", "Scania"};
-                modelName = models[(int) (Math.random() * models.length)];
+                modelName = vehicleFactory.getAvailableModels().get((int) (Math.random() * vehicleFactory.getAvailableModels().size()));
             }
 
             Vehicle newCar = vehicleFactory.createVehicle(modelName);
@@ -219,11 +187,6 @@ public class CarController {
 
             frame.drawPanel.removeCarFromPanel(carToRemove);
             frame.drawPanel.repaint();
-
         }
     }
 }
-
-
-
-
