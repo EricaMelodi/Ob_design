@@ -13,7 +13,7 @@ import TheOG.*;
 
 // This panel represents the animated part of the view with the car images.
 
-public class DrawPanel extends JPanel{
+public class DrawPanel extends JPanel implements Observer{
 
     private Map<Vehicle,BufferedImage> map = new HashMap<>();
     private Map<Vehicle,Point> mapPoint = new HashMap<>();
@@ -93,6 +93,11 @@ public class DrawPanel extends JPanel{
         if (car instanceof Saab95) return saabImage;
         if (car instanceof Scania) return scaniaImage;
         return null;
+    }
+
+    @Override
+    public void update() {
+        repaint();
     }
 
 

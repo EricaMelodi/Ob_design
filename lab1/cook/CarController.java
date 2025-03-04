@@ -189,7 +189,6 @@ public class CarController {
         if (cars.size() < 10) {
             VehicleFactory vehicleFactory = new VehicleFactory();
 
-            // Om "random" är angivet, välj en slumpmässig bilmodell
             if (modelName.equals("random")) {
                 String[] models = {"Volvo240", "Saab95", "Scania"};
                 modelName = models[(int) (Math.random() * models.length)];
@@ -211,15 +210,12 @@ public class CarController {
 
 
     public void removeCar() {
-        if (cars.size() > 0) {
-
+        if (!cars.isEmpty()) {
             Vehicle carToRemove = cars.get((int) (Math.random() * cars.size()));
+            carToRemove.removeObserver(frame);
             cars.remove(carToRemove);
         }
     }
-
-
-
 }
 
 

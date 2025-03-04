@@ -55,6 +55,7 @@ public abstract class Vehicle implements IMovable, ICollision, Subject {
     @Override
     public void move() {
         direction.move(this);
+        notifyObservers();
     }
 
     @Override
@@ -125,6 +126,7 @@ public abstract class Vehicle implements IMovable, ICollision, Subject {
             throw new IllegalArgumentException("Amount must be between 0 and 1");
         }
         decrementSpeed(amount);
+        notifyObservers();
     }
 
     public void addObserver(Observer observer) {
@@ -142,18 +144,7 @@ public abstract class Vehicle implements IMovable, ICollision, Subject {
             observer.update();
         }
     }
-
-
-    public void changeSpeed(double newSpeed) {
-        this.currentSpeed = newSpeed;
-        notifyObservers();
-    }
-
-
-
-
-
-    }
+}
 
 
 

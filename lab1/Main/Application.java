@@ -3,7 +3,6 @@ import TheOG.*;
 import cook.CarController;
 import cook.CarView;
 import cook.Observer;
-
 import javax.swing.*;
 import java.util.ArrayList;
 
@@ -21,7 +20,6 @@ public class Application {
 
                 for (Vehicle car : carController.cars) {
                         car.addObserver(carView);
-
                         carView.drawPanel.setCars(carController.cars);
 
                         System.out.println("Timer starting...");
