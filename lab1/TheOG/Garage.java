@@ -14,7 +14,7 @@ public class Garage<T extends Vehicle> {
         this.container = new Container<T>(MAX_CARS);
         this.x = x;
         this.y = y;
-        this.size = 130;
+        this.size = 100;
     }
 
     public void takeInCar(T car){

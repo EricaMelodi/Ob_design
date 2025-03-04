@@ -22,8 +22,6 @@ public class Volvo240 extends Vehicle {
             boolean withinX = o.getX() <= this.getX() && this.getX() <= o.getX() + o.getSize();
             boolean withinY = o.getY() <= this.getY() && this.getY() <= o.getY() + o.getSize();
             return withinX && withinY;
-
-
     }
 
 }

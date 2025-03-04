@@ -90,17 +90,19 @@ public class CarController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 addCar("random");
+                // anropa setcars
             }
         });
         v.removeCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 removeCar();
-            }
+            } // ta bort bilar från listan
         });
 
     }
 
+    // Gör klass med workshop + observer lista + timerlistner
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             ArrayList<Vehicle> toRemove = new ArrayList<>();

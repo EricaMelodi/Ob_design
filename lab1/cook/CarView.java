@@ -77,7 +77,7 @@ public class CarView extends JFrame implements Observer{
 
         this.add(gasPanel);
 
-        controlPanel.setLayout(new GridLayout(2, 4));
+        controlPanel.setLayout(new GridLayout(2, 5));
 
 
 
@@ -87,6 +87,8 @@ public class CarView extends JFrame implements Observer{
         controlPanel.add(brakeButton, 3);
         controlPanel.add(turboOffButton, 4);
         controlPanel.add(lowerBedButton, 5);
+        controlPanel.add(addCarButton, 6);
+        controlPanel.add(removeCarButton, 7);
         controlPanel.setPreferredSize(new Dimension((X / 2) + 4, 200));
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);

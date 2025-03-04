@@ -49,11 +49,6 @@ public class DrawPanel extends JPanel implements Observer{
 
 
 
-            // Lägg till bilder i map
-            map.put(new Volvo240(), volvoImage);
-            map.put(new Saab95(), saabImage);
-            map.put(new Scania(), scaniaImage);
-
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -77,6 +72,7 @@ public class DrawPanel extends JPanel implements Observer{
                 g.drawImage(image, position.x, position.y, null);
             }
         }
+// Behöver ej movit, kan använda getX,getY från mapPoint
 
         g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
     }
