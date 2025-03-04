@@ -13,6 +13,7 @@ public class Application {
                 v.addCar("random");
                 v.addCar("random");
 
+
                 v.frame.drawPanel.setCars(v.cars);
 
                 System.out.println("Timer starting...");
