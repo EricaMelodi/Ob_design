@@ -106,28 +106,33 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             ArrayList<Vehicle> toRemove = new ArrayList<>();
+
             for (Vehicle car : cars) {
-                car.move();
+                car.move(); // Uppdatera bilens position
 
                 int x = (int) Math.round(car.getX());
                 int y = (int) Math.round(car.getY());
 
+                // Om bilen är utanför gränserna, vänd den
                 if (x >= 700 || x < 0 || y >= 700 || y < 0) {
                     car.turnLeft();
                     car.turnLeft();
                 }
-                frame.drawPanel.moveit(car);
+
+                // Behöver ej moveit(), räcker med att rita om
                 frame.drawPanel.repaint();
 
+                // Kolla om bilen krockar med verkstaden
                 if (car.collision(volvoWorkShop)) {
                     toRemove.add(car);
                 }
             }
-            for (Vehicle car : toRemove) {
-                cars.remove(car);
-            }
+
+            // Ta bort bilar som kolliderar med verkstaden
+            cars.removeAll(toRemove);
         }
     }
+
 
     void gas(int amount) {
         double gas = ((double) amount) / 100;
@@ -207,15 +212,22 @@ public class CarController {
             cars.add(newCar);
 
             newCar.addObserver(frame);
+
+            frame.drawPanel.setCars(cars);
+            frame.drawPanel.repaint();
+
         }
     }
-
 
     public void removeCar() {
         if (!cars.isEmpty()) {
             Vehicle carToRemove = cars.get((int) (Math.random() * cars.size()));
             carToRemove.removeObserver(frame);
             cars.remove(carToRemove);
+
+            frame.drawPanel.removeCarFromPanel(carToRemove);
+            frame.drawPanel.repaint();
+
         }
     }
 }
