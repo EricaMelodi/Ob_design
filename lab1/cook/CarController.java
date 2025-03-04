@@ -18,6 +18,8 @@ import TheOG.Directions.EastDirection;
 public class CarController {
     // member fields:
 
+
+
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
     // The timer is started with a listener (see below) that executes the statements
@@ -187,6 +189,7 @@ public class CarController {
         if (cars.size() < 10) {
             VehicleFactory vehicleFactory = new VehicleFactory();
 
+            // Om "random" är angivet, välj en slumpmässig bilmodell
             if (modelName.equals("random")) {
                 String[] models = {"Volvo240", "Saab95", "Scania"};
                 modelName = models[(int) (Math.random() * models.length)];
@@ -201,6 +204,8 @@ public class CarController {
             newCar.setDirection(new EastDirection());
 
             cars.add(newCar);
+
+            newCar.addObserver(frame);
         }
     }
 
@@ -212,6 +217,9 @@ public class CarController {
             cars.remove(carToRemove);
         }
     }
+
+
+
 }
 
 

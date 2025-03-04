@@ -7,13 +7,16 @@ import TheOG.Directions.EastDirection;
 import cook.*;
 
 
-public abstract class Vehicle implements IMovable, ICollision {
+public abstract class Vehicle implements IMovable, ICollision, Subject {
+
+    private ArrayList<Observer> observers = new ArrayList<>();
 
     private int nrDoors;
     private Color color;
     private double currentSpeed;
     private double enginePower;
     private String modelName;
+
 
     public Vehicle(int nrDoors, Color color, double enginePower, String modelName) {
         this.nrDoors = nrDoors;
@@ -114,6 +117,7 @@ public abstract class Vehicle implements IMovable, ICollision {
             throw new IllegalArgumentException("Amount must be between 0 and 1");
         }
         incrementSpeed(amount);
+        notifyObservers();
     }
 
     public void brake(double amount) {
@@ -123,7 +127,33 @@ public abstract class Vehicle implements IMovable, ICollision {
         decrementSpeed(amount);
     }
 
-}
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update();
+        }
+    }
+
+
+    public void changeSpeed(double newSpeed) {
+        this.currentSpeed = newSpeed;
+        notifyObservers();
+    }
+
+
+
+
+
+    }
 
 
 
