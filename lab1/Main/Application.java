@@ -24,6 +24,7 @@ public class Application {
 
                         System.out.println("Timer starting...");
                         carController.timer.start();
+
                 }
         }
 }
