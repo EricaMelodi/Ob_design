@@ -3,9 +3,7 @@ package cook;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import TheOG.*;
-import TheOG.Directions.EastDirection;
 
 public class CarController {
     private final int delay = 50;

@@ -13,10 +13,12 @@ public class ModelFacade implements Subject {
     private ArrayList<Vehicle> cars = new ArrayList<>();
     private List<Observer> observers = new ArrayList<>();
     private Timer timer;
+    private Garage<Volvo240> volvoWorkShop;
 
     public ModelFacade() {
         this.vehicleFactory = new VehicleFactory();
-        this.timer = new Timer(50, new CarTimerListener(this));
+        this.volvoWorkShop = new Garage<>(10, 300, 300); // Initialize the garage with a capacity of 10
+        this.timer = new Timer(50, new CarTimerListener(cars, volvoWorkShop, this));
     }
 
     public ArrayList<Vehicle> getCars() {

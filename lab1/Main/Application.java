@@ -13,10 +13,16 @@ public class Application {
                 ModelFacade modelFacade = new ModelFacade();
                 CarView carView = new CarView(modelFacade, "CarSim 1.0");
                 modelFacade.addObserver(carView);
+                Garage<Volvo240> volvoWorkShop = new Garage<>(10, 300, 300);
 
                 modelFacade.addCar("random");
                 modelFacade.addCar("random");
                 modelFacade.addCar("random");
                 modelFacade.startTimer();
+                CarController carController = new CarController(carView, volvoWorkShop, modelFacade);
         }
 }
+
+
+
+
