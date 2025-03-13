@@ -43,17 +43,14 @@ public class Container<T> implements IHasContainer{
 
     @Override
     public void loadCars(Vehicle car, int weight) {
-
     }
 
     @Override
     public void unloadCars() {
-
     }
 
     @Override
     public void posWhileCarInTransport() {
-
     }
 
     @Override

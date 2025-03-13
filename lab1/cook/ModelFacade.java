@@ -17,7 +17,7 @@ public class ModelFacade implements Subject {
 
     public ModelFacade() {
         this.vehicleFactory = new VehicleFactory();
-        this.volvoWorkShop = new Garage<>(10, 300, 300); // Initialize the garage with a capacity of 10
+        this.volvoWorkShop = new Garage<>(10, 300, 300);
         this.timer = new Timer(50, new CarTimerListener(cars, volvoWorkShop, this));
     }
 

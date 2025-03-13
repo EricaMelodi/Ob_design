@@ -85,8 +85,6 @@ public class DrawPanel extends JPanel implements Observer {
         repaint();
     }
 
-    public void removeCarFromPanel(Vehicle car) {
-        carMap.remove(car); // Remove the car from the map with images
-        repaint(); // Repaint the panel without the car
-    }
+
+
 }
