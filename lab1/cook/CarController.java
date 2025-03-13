@@ -1,14 +1,11 @@
 package cook;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import TheOG.*;
 import TheOG.Directions.EastDirection;
-
 
 public class CarController {
     private final int delay = 50;
@@ -16,18 +13,13 @@ public class CarController {
     public Garage<Volvo240> volvoWorkShop;
     public Timer timer;
     public java.util.List<Vehicle> cars;
-    private ModelFacade modelFacade; 
+    private ModelFacade modelFacade;
 
-    //methods:
-
+    // Constructor
     public CarController(CarView v, Garage<Volvo240> volvoWorkShop, ModelFacade modelFacade) {
         this.frame = v;
         this.volvoWorkShop = volvoWorkShop;
         this.modelFacade = modelFacade;
-
-        this.timer = new Timer(50, new CarTimerListener(modelFacade.getCars(), volvoWorkShop, frame));
-        timer.start();  // Startar timern här
-
 
         v.gasButton.addActionListener(new ActionListener() {
             @Override
@@ -81,18 +73,17 @@ public class CarController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 addCar("random");
-                // anropa setcars
             }
         });
         v.removeCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 removeCar();
-            } // ta bort bilar från listan
+            }
         });
 
+        modelFacade.startTimer();
     }
-
 
     void gas(int amount) {
         modelFacade.gas(amount);
@@ -108,11 +99,11 @@ public class CarController {
     }
 
     void turboOff() {
-      modelFacade.turboOff();
+        modelFacade.turboOff();
     }
 
     void raisePlatform() {
-     modelFacade.raisePlatform();
+        modelFacade.raisePlatform();
     }
 
     void lowerPlatform() {
@@ -120,11 +111,11 @@ public class CarController {
     }
 
     void startEngine() {
-       modelFacade.startEngine();
+        modelFacade.startEngine();
     }
 
     void stopEngine() {
-        modelFacade.startEngine();
+        modelFacade.stopEngine();
     }
 
     public void addCar(String modelName) {
@@ -133,21 +124,9 @@ public class CarController {
         frame.drawPanel.repaint();
     }
 
-
     public void removeCar() {
-        ArrayList<Vehicle> cars = modelFacade.getCars();
-
-        if (!cars.isEmpty()) {
-            Vehicle carToRemove = cars.get((int) (Math.random() * cars.size()));
-            carToRemove.removeObserver(frame);  // Remove observer first
-            cars.remove(carToRemove);           // Then remove from list
-
-            frame.drawPanel.removeCarFromPanel(carToRemove);  // Update the view
-            frame.drawPanel.repaint();  // Repaint the panel
-        }
+        modelFacade.removeCar();
+        frame.drawPanel.setCars(modelFacade.getCars());
+        frame.drawPanel.repaint();
     }
-
-
-
-
 }

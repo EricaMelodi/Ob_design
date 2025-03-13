@@ -2,7 +2,7 @@ package TheOG;
 
 import java.util.ArrayList;
 
-public class Container<T> {
+public class Container<T> implements IHasContainer{
     private final int MAX_CAPACITY;
     private ArrayList<T> items;
 
@@ -39,6 +39,41 @@ public class Container<T> {
 
     public int getItemCount() {
         return items.size();
+    }
+
+    @Override
+    public void loadCars(Vehicle car, int weight) {
+
+    }
+
+    @Override
+    public void unloadCars() {
+
+    }
+
+    @Override
+    public void posWhileCarInTransport() {
+
+    }
+
+    @Override
+    public boolean isNear(Vehicle car) {
+        return false;
+    }
+
+    @Override
+    public boolean isPlatformOpen() {
+        return false;
+    }
+
+    @Override
+    public void closePlatform() {
+
+    }
+
+    @Override
+    public void openPlatform() {
+
     }
 }
 

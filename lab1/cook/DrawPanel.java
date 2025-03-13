@@ -10,7 +10,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import TheOG.*;
 
-// Panel som ritar bilar och bakgrund
 public class DrawPanel extends JPanel implements Observer {
 
     private Map<Class<? extends Vehicle>, BufferedImage> carImages = new HashMap<>();
@@ -27,12 +26,12 @@ public class DrawPanel extends JPanel implements Observer {
         loadImages();
     }
 
-    // Laddar alla bilder
+    // Load all images
     private void loadImages() {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
 
-            // Laddar bilder och kopplar bilklasser till bilder
+            // Load images and map car classes to images
             carImages.put(Volvo240.class, ImageIO.read(classLoader.getResourceAsStream("pics/OOPSally.png")));
             carImages.put(Saab95.class, ImageIO.read(classLoader.getResourceAsStream("pics/mcqueen1.png")));
             carImages.put(Scania.class, ImageIO.read(classLoader.getResourceAsStream("pics/mater.png")));
@@ -45,7 +44,7 @@ public class DrawPanel extends JPanel implements Observer {
         }
     }
 
-    // Kopplar bilar till deras bilder
+    // Map cars to their images
     public void setCars(List<Vehicle> cars) {
         carMap.clear();
         for (Vehicle car : cars) {
@@ -53,7 +52,7 @@ public class DrawPanel extends JPanel implements Observer {
         }
     }
 
-    // Hämtar rätt bild för en viss biltyp
+    // Get the correct image for a specific car type
     private BufferedImage getCarImage(Vehicle car) {
         return carImages.getOrDefault(car.getClass(), null);
     }
@@ -62,12 +61,12 @@ public class DrawPanel extends JPanel implements Observer {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        // Rita bakgrunden
+        // Draw the background
         if (streetsImage != null) {
             g.drawImage(streetsImage, 0, 0, null);
         }
 
-        // Rita bilar på sina positioner
+        // Draw cars at their positions
         for (Vehicle car : carMap.keySet()) {
             BufferedImage image = getCarImage(car);
             if (image != null) {
@@ -75,7 +74,7 @@ public class DrawPanel extends JPanel implements Observer {
             }
         }
 
-        // Rita verkstaden
+        // Draw the workshop
         if (volvoWorkshopImage != null) {
             g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
         }
@@ -87,9 +86,7 @@ public class DrawPanel extends JPanel implements Observer {
     }
 
     public void removeCarFromPanel(Vehicle car) {
-        carMap.remove(car); // Tar bort bilen från kartan med bilder
-        repaint(); // Ritar om panelen utan bilen
+        carMap.remove(car); // Remove the car from the map with images
+        repaint(); // Repaint the panel without the car
     }
-
-
 }

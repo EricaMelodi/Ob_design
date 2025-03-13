@@ -3,19 +3,24 @@ package cook;
 import TheOG.*;
 import TheOG.Directions.EastDirection;
 
+import javax.swing.Timer;
 import java.util.ArrayList;
+import java.util.List;
 
-public class ModelFacade {
+public class ModelFacade implements Subject {
 
     private final VehicleFactory vehicleFactory;
     private ArrayList<Vehicle> cars = new ArrayList<>();
-
-    public ArrayList<Vehicle> getCars() {
-        return cars;
-    }
+    private List<Observer> observers = new ArrayList<>();
+    private Timer timer;
 
     public ModelFacade() {
         this.vehicleFactory = new VehicleFactory();
+        this.timer = new Timer(50, new CarTimerListener(this));
+    }
+
+    public ArrayList<Vehicle> getCars() {
+        return cars;
     }
 
     public void addCar(String modelName) {
@@ -31,16 +36,21 @@ public class ModelFacade {
 
             newCar.setDirection(new EastDirection());
             cars.add(newCar);
-
+            notifyObservers();
         }
     }
 
     public void removeCar() {
         if (!cars.isEmpty()) {
             Vehicle carToRemove = cars.get((int) (Math.random() * cars.size()));
-            cars.remove(carToRemove);
 
+            cars.remove(carToRemove);
+            notifyObservers();
         }
+    }
+
+    public void startTimer() {
+        timer.start();
     }
 
     void gas(int amount) {
@@ -83,7 +93,7 @@ public class ModelFacade {
 
     void lowerPlatform() {
         for (Vehicle car : cars) {
-            if (car instanceof Scania scania) {
+            if (car instanceof IHasPlatform scania) {
                 scania.lowerPlatform(70);
             }
         }
@@ -101,4 +111,20 @@ public class ModelFacade {
         }
     }
 
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update();
+        }
+    }
 }
